@@ -7,12 +7,11 @@ export const enduranceEvents = [
 		date: 'October 2024',
 		image: '/images/marathon-finish.jpg',
 		stats: [
-			{ label: 'Distance', value: '42.2km' },
-			{ label: 'Time', value: '3:45:23' },
-			{ label: 'Pace', value: '5:20/km' },
-			{ label: 'Avg HR', value: '165 bpm' }
+			{ label: 'Time', value: '5:30' },
+			{ label: 'Mode', value: 'Mit Freund & Helfer' },
+			{ label: 'Team', value: '3 people' }
 		],
-		description: 'First Marathon'
+		description: 'Auf eigene Faust mit Freund und Radhelfer'
 	},
 	{
 		id: 'gr20',
@@ -21,11 +20,11 @@ export const enduranceEvents = [
 		date: 'Summer 2023',
 		image: '/images/gr20-summit.jpg',
 		stats: [
-			{ label: 'Distance', value: '180km' },
-			{ label: 'Elevation', value: '10,000m+' },
-			{ label: 'Duration', value: '15 days' }
+			{ label: 'Duration', value: '9 days' },
+			{ label: 'Section', value: 'Northern part' },
+			{ label: 'Shelter', value: 'Only tent' }
 		],
-		description: "Europe's toughest trek"
+		description: 'GR20 Corsica - 9 Tage Nordteil mit Zelt'
 	},
 	{
 		id: 'alps',
@@ -46,11 +45,11 @@ export const enduranceEvents = [
 		date: 'Summer 2024',
 		image: '/images/bike-tour.jpg',
 		stats: [
-			{ label: 'Distance', value: '800km' },
-			{ label: 'Mode', value: 'Bicycle' },
-			{ label: 'Countries', value: 'AT → SI → HR' }
+			{ label: 'Distance', value: '719km' },
+			{ label: 'Elevation', value: '10.030m ↑ / 10.530m ↓' },
+			{ label: 'Shelter', value: 'Mostly tent' }
 		],
-		description: 'Bicycle tour across three countries'
+		description: 'Radtour AT → SI → HR mit Zelt'
 	}
 ];
 

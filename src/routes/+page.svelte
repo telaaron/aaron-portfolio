@@ -42,5 +42,5 @@
 <TechStack />
 <Projects />
 <Contact />
-<Sponsorship />
+<!-- <Sponsorship /> -->
 <Footer />
