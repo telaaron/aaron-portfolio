@@ -66,27 +66,44 @@
 			<div class="project-grid grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
 				<div class="project-info">
 					<h3 class="text-3xl md:text-4xl font-bold mb-4">Spiritual Companion</h3>
-					<p class="text-xl mb-6 text-purple-400 font-semibold">Faith meets Technology</p>
+					<p class="text-xl mb-6 text-purple-400 font-semibold">Theologically Safe AI for Faith Conversations</p>
 
-					<p class="text-gray-400 mb-6 leading-relaxed">
-						Ein digitaler Begleiter für das geistliche Leben. Nutzt KI, um Gebetsroutinen,
-						Bibelstudium und spirituelle Reflexion zu unterstützen.
-					</p>
+					<div class="problem-solution space-y-4 mb-6">
+						<div>
+							<h4 class="font-semibold text-lg mb-2 text-gray-300">Problem</h4>
+							<p class="text-gray-400">
+								AI tools for spiritual content generate theologically incorrect responses.
+							</p>
+						</div>
+						<div>
+							<h4 class="font-semibold text-lg mb-2 text-gray-300">Solution</h4>
+							<p class="text-gray-400">
+								Every AI response is anchored to verified Bible verses through vector search—combining conversational empathy with theological accuracy.
+							</p>
+						</div>
+					</div>
+
+					<div class="tech-used mb-6">
+						<h4 class="font-semibold text-lg mb-3 text-gray-300">Tech Stack</h4>
+						<div class="flex flex-wrap gap-2">
+							<span class="badge">FastAPI</span>
+							<span class="badge">Google Vertex AI</span>
+							<span class="badge">FAISS</span>
+							<span class="badge">LangChain</span>
+						</div>
+					</div>
 
 					<div class="tech-used mb-6">
 						<h4 class="font-semibold text-lg mb-2 text-gray-300">Status</h4>
-						<p class="text-gray-400">Currently in Development</p>
+						<p class="text-gray-400">PoC completed - Pitched to YouVersion</p>
 					</div>
 				</div>
 				<div class="project-visual">
-					<div
-						class="placeholder-card bg-linear-to-br from-purple-900/30 to-gray-900 rounded-xl p-12 text-center border border-gray-800 aspect-video flex items-center justify-center"
-					>
-						<div>
-							<span class="text-6xl block mb-4">✨</span>
-							<p class="text-2xl font-semibold text-gray-400">Coming Soon</p>
-						</div>
-					</div>
+					<img
+						src="/images/spiritual-companion.jpg"
+						alt="Spiritual Companion App"
+						class="rounded-xl w-full h-auto object-cover border border-gray-800"
+					/>
 				</div>
 			</div>
 		</div>

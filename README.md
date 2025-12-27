@@ -2,19 +2,25 @@
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Creating a project
+### Prerequisites
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Node.js 18+ 
+- pnpm (recommended) or npm
 
-```sh
-# create a new project in the current directory
-npx sv create
+### Installation
 
-# create a new project in my-app
-npx sv create my-app
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/aaron-portfolio.git
+cd aaron-portfolio
 ```
 
-## Developing
+2. Install dependencies
+```bash
+pnpm install
+```
+
+## 💻 Development
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
@@ -25,14 +31,36 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+## 🏗️ Building
 
 To create a production version of your app:
 
-```sh
-npm run build
+```bash
+pnpm build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```bash
+pnpm preview
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines for details on:
+- How to report bugs
+- How to suggest features
+- How to submit pull requests
+- Code standards and conventions
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details.
+
+## 📧 Contact
+
+Hast du Fragen oder Feedback? Kontaktiere mich gerne!
+
+---
+
+Made with ❤️ by Aaron Pfützner
