@@ -34,5 +34,5 @@
 <ManifestorMethod />
 <Frequenzen />
 <Bewegung />
-<Expeditionen />
+<!-- <Expeditionen /> --> <!-- noch baustelle -->
 <FooterNew />
