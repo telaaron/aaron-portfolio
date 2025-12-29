@@ -76,31 +76,5 @@
 				</button>
 			{/each}
 		</div>
-
-		<!-- Weekly routine visualization -->
-		<div class="mt-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-500">
-			<p class="text-gray-500 text-sm uppercase tracking-widest mb-6 text-center">Wochenroutine</p>
-			<div class="flex justify-center gap-2">
-				{#each ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'] as day, i}
-					{@const activities = [
-						['💪'],           // Mo
-						['🧗'],           // Di
-						['💪'],           // Mi
-						['💪'],           // Do
-						['💪', '🏃'],     // Fr
-						['🧊'],           // Sa
-						[''],             // So - Ruhetag
-					]}
-					<div class="flex flex-col items-center gap-2">
-						<span class="text-gray-500 text-xs">{day}</span>
-						<div class="w-12 h-16 bg-gray-900/50 border border-gray-800 rounded-lg flex flex-col items-center justify-center gap-1 {activities[i].length === 0 ? 'opacity-30' : ''}">
-							{#each activities[i] as emoji}
-								<span class="text-lg">{emoji}</span>
-							{/each}
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
 	</div>
 </section>

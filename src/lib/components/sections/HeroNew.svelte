@@ -139,7 +139,7 @@
 	});
 </script>
 
-<section class="hero min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-4">
+<section class="hero min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-4 pt-20 md:pt-0">
 	<!-- Animated Grid Canvas -->
 	<canvas bind:this={canvas} class="absolute inset-0 z-0"></canvas>
 
@@ -147,7 +147,7 @@
 	<div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-deep-black z-5"></div>
 
 	<!-- Main content -->
-	<div class="relative z-10 text-center max-w-4xl mx-auto {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-1000">
+	<div class="relative z-10 text-center max-w-4xl mx-auto -mt-20 md:mt-0 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-1000">
 		<!-- Name -->
 		<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">
 			<span class="text-white">{meta.name.split(' ')[0]}</span>

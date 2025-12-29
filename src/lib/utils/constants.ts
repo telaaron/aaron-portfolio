@@ -150,13 +150,13 @@ export const frequenzen = {
 // ============================================
 export const bewegung = {
 	tagline: 'Disziplin. Kälte. Kontrolle.',
-	philosophy: 'Ian Baseagle Plan',
+	philosophy: 'Ian Baseagle + Wim Hof Methode',
 	activities: [
 		{
 			id: 'calisthenics',
 			name: 'Calisthenics',
 			icon: '💪',
-			description: 'Main Sport',
+			description: 'Main Sport nach Ian Baseagle Plan',
 			details: [
 				'Muscle-Up ✓',
 				'Weighted Pull-Ups',
@@ -167,24 +167,24 @@ export const bewegung = {
 			frequency: '4x/Woche'
 		},
 		{
-			id: 'bouldering',
-			name: 'Bouldern',
-			icon: '🧗',
-			description: 'Problemlösung an der Wand',
-			frequency: '1-2x/Woche'
+			id: 'wimhof',
+			name: 'Wim Hof Methode',
+			icon: '❄️',
+			description: 'Kälte-Mindset & Atemtechnik',
+			details: [
+				'Cold Exposure Training',
+				'Atemtechniken & Kontrolle',
+				'Mentale Stärke',
+				'Immunsystem Boost',
+				'Eisbaden Schlachtensee'
+			],
+			frequency: '2-3x/Woche'
 		},
 		{
 			id: 'running',
 			name: 'Laufen',
 			icon: '🏃',
 			description: '10km Runs',
-			frequency: '1x/Woche'
-		},
-		{
-			id: 'icebath',
-			name: 'Eisbaden',
-			icon: '🧊',
-			description: 'Schlachtensee',
 			frequency: '1x/Woche'
 		},
 		{

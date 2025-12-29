@@ -71,7 +71,7 @@
 		<div class="grid md:grid-cols-2 gap-6 md:auto-rows-fr {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-500">
 			{#each manifestorMethod.projects as project, i}
 				<TiltCard>
-					<div class="h-full bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors group overflow-hidden flex flex-col min-h-175">
+					<div class="h-full bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors group overflow-hidden flex flex-col md:min-h-175">
 						<!-- Project Image -->
 						{#if project.image}
 							<div class="aspect-video bg-gray-800 overflow-hidden">
@@ -109,10 +109,10 @@
 							<!-- Description -->
 							<p class="text-gray-400 mb-2">{project.description}</p>
 							{#if project.longDescription}
-								<p class="text-gray-500 text-sm mb-6">{project.longDescription}</p>
+								<p class="hidden md:block text-gray-500 text-sm mb-6">{project.longDescription}</p>
 							{/if}
 							{#if project.features}
-								<div class="mb-6 flex-1">
+								<div class="hidden md:block mb-6 flex-1">
 									<p class="text-xs font-mono uppercase tracking-widest text-orange-300 mb-2">Features</p>
 									<ul class="text-sm text-gray-400 space-y-1">
 										{#each project.features.slice(0, 3) as feature}
