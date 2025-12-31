@@ -1,16 +1,25 @@
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+// GSAP animations - client-side only
+let gsap: any;
+let ScrollTrigger: any;
 
-// Register ScrollTrigger plugin - only on client
+// Dynamically import GSAP only on client
 if (typeof window !== 'undefined') {
-	gsap.registerPlugin(ScrollTrigger);
+	import('gsap').then((module) => {
+		gsap = module.gsap || module.default;
+	});
+	import('gsap/dist/ScrollTrigger').then((module) => {
+		ScrollTrigger = module.ScrollTrigger;
+		if (gsap && ScrollTrigger) {
+			gsap.registerPlugin(ScrollTrigger);
+		}
+	});
 }
 
 /**
  * Fade in element from bottom on scroll
  */
 export function fadeInUp(element: HTMLElement, delay = 0) {
-	if (typeof window === 'undefined') return;
+	if (typeof window === 'undefined' || !gsap) return;
 	
 	gsap.fromTo(
 		element,
@@ -37,7 +46,7 @@ export function fadeInUp(element: HTMLElement, delay = 0) {
  * Stagger animation for multiple children
  */
 export function staggerFadeIn(container: HTMLElement, childSelector: string, staggerDelay = 0.1) {
-	if (typeof window === 'undefined') return;
+	if (typeof window === 'undefined' || !gsap) return;
 	
 	const children = container.querySelectorAll(childSelector);
 	
@@ -66,7 +75,7 @@ export function staggerFadeIn(container: HTMLElement, childSelector: string, sta
  * Scale in animation for cards
  */
 export function scaleIn(element: HTMLElement, delay = 0) {
-	if (typeof window === 'undefined') return;
+	if (typeof window === 'undefined' || !gsap) return;
 	
 	gsap.fromTo(
 		element,
@@ -93,7 +102,7 @@ export function scaleIn(element: HTMLElement, delay = 0) {
  * Slide in from left
  */
 export function slideInLeft(element: HTMLElement, delay = 0) {
-	if (typeof window === 'undefined') return;
+	if (typeof window === 'undefined' || !gsap) return;
 	
 	gsap.fromTo(
 		element,
@@ -120,7 +129,7 @@ export function slideInLeft(element: HTMLElement, delay = 0) {
  * Parallax effect on scroll
  */
 export function parallax(element: HTMLElement, speed = 0.5) {
-	if (typeof window === 'undefined') return;
+	if (typeof window === 'undefined' || !gsap) return;
 	
 	gsap.to(element, {
 		y: () => window.innerHeight * speed * 0.3,
@@ -138,8 +147,8 @@ export function parallax(element: HTMLElement, speed = 0.5) {
  * Cleanup all ScrollTrigger instances (call on component destroy)
  */
 export function cleanupScrollTriggers() {
-	if (typeof window !== 'undefined') {
-		ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+	if (typeof window !== 'undefined' && ScrollTrigger) {
+		ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
 	}
 }
 
