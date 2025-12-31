@@ -149,7 +149,7 @@ export const frequenzen = {
 // BEWEGUNG - Sport & Körper
 // ============================================
 export const bewegung = {
-	tagline: 'Disziplin. Kälte. Kontrolle.',
+	tagline: 'Disziplin. Kälte. Wille.',
 	philosophy: 'Ian Baseagle + Wim Hof Methode',
 	activities: [
 		{

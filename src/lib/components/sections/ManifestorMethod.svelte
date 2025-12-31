@@ -145,20 +145,5 @@
 				</TiltCard>
 			{/each}
 		</div>
-
-		<!-- Lifestyle Projects (smaller) -->
-		{#if manifestorMethod.lifestyle.length > 0}
-			<div class="mt-12 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-700">
-				<p class="text-gray-500 text-sm uppercase tracking-widest mb-4">Lifestyle Tech</p>
-				<div class="flex flex-wrap gap-4">
-					{#each manifestorMethod.lifestyle as item}
-						<div class="px-4 py-3 bg-gray-900/30 border border-gray-800 rounded-xl">
-							<p class="text-white font-medium">{item.name}</p>
-							<p class="text-gray-500 text-sm">{item.description}</p>
-						</div>
-					{/each}
-				</div>
-			</div>
-		{/if}
 	</div>
 </section>
