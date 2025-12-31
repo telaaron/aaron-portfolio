@@ -1,7 +1,7 @@
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-// Register ScrollTrigger plugin
+// Register ScrollTrigger plugin - only on client
 if (typeof window !== 'undefined') {
 	gsap.registerPlugin(ScrollTrigger);
 }
