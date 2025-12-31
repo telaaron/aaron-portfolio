@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { quickLinks, meta } from '$lib/utils/constants';
+	import { quickLinks, meta } from '$lib/utils/content';
+	import { language, toggleLanguage } from '$lib/stores/language';
+	import { t } from '$lib/utils/translations';
 	import MagneticButton from '$lib/components/ui/MagneticButton.svelte';
 
 	// Icon components for social links
@@ -15,6 +17,8 @@
 	let canvas: HTMLCanvasElement | undefined;
 	let ctx: CanvasRenderingContext2D | null = null;
 	let animationId: number;
+	
+	let translations = $derived(t($language));
 
 	function animateGrid() {
 		if (!ctx || !canvas) return;
@@ -146,6 +150,14 @@
 	<!-- Gradient Overlay -->
 	<div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-deep-black z-5"></div>
 
+	<!-- Language Toggle -->
+	<button
+		onclick={() => toggleLanguage()}
+		class="absolute top-8 right-8 z-20 px-4 py-2 bg-gray-900/50 border border-gray-800 rounded-full hover:border-orange-400 hover:bg-gray-900 transition-all duration-300 text-white font-mono text-sm"
+	>
+		{$language === 'de' ? '🇬🇧 EN' : '🇩🇪 DE'}
+	</button>
+
 	<!-- Main content -->
 	<div class="relative z-10 text-center max-w-4xl mx-auto -mt-32 md:mt-0 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-1000">
 		<!-- Name -->
@@ -154,13 +166,15 @@
 			<span class="bg-linear-to-r from-orange-400 via-orange-500 to-amber-400 bg-clip-text text-transparent">{meta.name.split(' ')[1]}</span>
 		</h1>
 
-		<!-- Tagline -->
-		<!-- <p class="text-2xl md:text-3xl lg:text-4xl text-gray-400 font-light mb-12 tracking-wide">
-			{meta.tagline}
-		</p> -->
+		<!-- Value Proposition -->
+		<p class="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto">
+			{$language === 'de' 
+				? 'Builder. Musiker. Perfektionist, der in jedem das Gute sucht.' 
+				: 'Builder. Musician. Perfectionist who sees the good in everyone.'}
+		</p>
 
 		<!-- Quick Links -->
-		<div class="flex flex-wrap justify-center gap-4 mb-16">
+		<div class="flex flex-wrap justify-center gap-4 mb-8">
 			{#each quickLinks as link}
 				<MagneticButton href={link.url} class="group">
 					<div class="flex items-center gap-3 px-6 py-3 bg-gray-900/50 border border-gray-800 rounded-full hover:border-electric-blue hover:bg-gray-900 transition-all duration-300">
@@ -174,6 +188,33 @@
 				</MagneticButton>
 			{/each}
 		</div>
+
+		<!-- CTA Buttons -->
+		<div class="flex flex-wrap justify-center gap-4 mb-16">
+			<a 
+				href="#manifestor-method" 
+				class="px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:from-orange-400 hover:to-amber-400 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105"
+			>
+				{translations.hero.viewProjects || 'Projekte ansehen'}
+			</a>
+			<a 
+				href="#kontakt" 
+				class="px-8 py-4 bg-gray-900/50 border border-gray-700 text-white font-semibold rounded-full hover:border-orange-400 hover:bg-gray-900 transition-all duration-300 hover:scale-105"
+			>
+				{translations.hero.contact || 'Kontakt'}
+			</a>
+		</div>
+	</div>
+
+	<!-- Scroll Indicator -->
+	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+		<a href="#manifestor-method" class="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-400 transition-colors">
+			<span class="text-xs uppercase tracking-widest">{translations.hero.scroll || 'Scroll'}</span>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M12 5v14"/>
+				<path d="m19 12-7 7-7-7"/>
+			</svg>
+		</a>
 	</div>
 </section>
 

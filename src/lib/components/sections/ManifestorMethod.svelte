@@ -1,8 +1,12 @@
 <script lang="ts">
-	import { manifestorMethod } from '$lib/utils/constants';
+	import { getManifestorMethod } from '$lib/utils/content';
+	import { language } from '$lib/stores/language';
+	import { t } from '$lib/utils/translations';
 	import TiltCard from '$lib/components/ui/TiltCard.svelte';
 
 	let isVisible = $state(false);
+	let translations = $derived(t($language));
+	let content = $derived(getManifestorMethod($language));
 
 	$effect(() => {
 		const observer = new IntersectionObserver(
@@ -30,13 +34,13 @@
 	<div class="container max-w-6xl mx-auto relative z-10">
 		<!-- Section header -->
 		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700">
-			<p class="text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">The Manifestor Method</p>
-			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{manifestorMethod.tagline}</h2>
+			<p class="text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.manifestorMethod.sectionLabel}</p>
+			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.manifestorMethod.tagline}</h2>
 			<p class="text-gray-400 text-lg max-w-2xl">
-				{manifestorMethod.description}
+				{translations.manifestorMethod.description}
 			</p>
 			<p class="text-orange-300 text-sm mt-4 font-mono italic">
-				{manifestorMethod.philosophy}
+				{translations.manifestorMethod.philosophy}
 			</p>
 		</div>
 
@@ -57,9 +61,9 @@
 
 		<!-- Tools -->
 		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-300">
-			<p class="text-gray-500 text-sm uppercase tracking-widest mb-4 text-center">Werkzeuge</p>
+			<p class="text-gray-500 text-sm uppercase tracking-widest mb-4 text-center">{translations.manifestorMethod.tools}</p>
 			<div class="flex flex-wrap justify-center gap-3">
-				{#each manifestorMethod.tools as tool}
+				{#each content.tools as tool}
 					<span class="px-4 py-2 bg-gray-900/50 border border-gray-800 rounded-full text-gray-400 text-sm font-mono">
 						{tool}
 					</span>
@@ -69,7 +73,7 @@
 
 		<!-- Projects -->
 		<div class="grid md:grid-cols-2 gap-6 md:auto-rows-fr {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-500">
-			{#each manifestorMethod.projects as project, i}
+			{#each content.projects as project, i}
 				<TiltCard>
 					<div class="h-full bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors group overflow-hidden flex flex-col md:min-h-175">
 						<!-- Project Image -->
@@ -86,7 +90,7 @@
 						<div class="p-6 md:p-8 flex flex-col flex-1">
 							<!-- Status badge -->
 							<div class="flex items-center justify-between mb-4">
-								<span class="text-xs font-mono uppercase tracking-widest text-orange-400">{project.origin}</span>
+								<span class="text-xs font-mono uppercase tracking-widest text-orange-400">{translations.manifestorMethod.origin}</span>
 								<span class="px-3 py-1 rounded-full text-xs font-medium {project.statusColor === 'blue' ? 'bg-orange-900/20 text-orange-400' : 'bg-green-900/30 text-green-400'}">
 									{project.status}
 								</span>
@@ -113,7 +117,7 @@
 							{/if}
 							{#if project.features}
 								<div class="hidden md:block mb-6 flex-1">
-									<p class="text-xs font-mono uppercase tracking-widest text-orange-300 mb-2">Features</p>
+									<p class="text-xs font-mono uppercase tracking-widest text-orange-300 mb-2">{translations.manifestorMethod.features}</p>
 									<ul class="text-sm text-gray-400 space-y-1">
 										{#each project.features.slice(0, 3) as feature}
 											<li class="flex items-start gap-2">

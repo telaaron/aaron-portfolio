@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { bewegung } from '$lib/utils/constants';
+	import { getBewegung } from '$lib/utils/content';
+	import { language } from '$lib/stores/language';
+	import { t } from '$lib/utils/translations';
+
+	let translations = $derived(t($language));
+	let content = $derived(getBewegung($language));
 
 	let isVisible = $state(false);
 	let expandedActivity = $state<string | null>(null);
@@ -34,14 +39,14 @@
 	<div class="container max-w-6xl mx-auto relative z-10">
 		<!-- Section header -->
 		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700">
-			<p class="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-2">Bewegung</p>
-			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{bewegung.tagline}</h2>
-			<p class="text-gray-400">Nach dem <span class="text-cyan-400 font-mono">{bewegung.philosophy}</span></p>
+			<p class="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.bewegung.sectionLabel}</p>
+			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.bewegung.tagline}</h2>
+			<p class="text-gray-400">Nach dem <span class="text-cyan-400 font-mono">{translations.bewegung.philosophy}</span></p>
 		</div>
 
 		<!-- Activities grid -->
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-200">
-			{#each bewegung.activities as activity, i}
+			{#each content.activities as activity, i}
 				{@const isExpanded = expandedActivity === activity.id}
 				{@const isCalisthenics = activity.id === 'calisthenics'}
 				

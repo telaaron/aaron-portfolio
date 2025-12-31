@@ -339,6 +339,6 @@ export const meta = {
 
 // Für den Footer - dezent
 export const footerVerse = {
-	text: 'Denn ich weiß wohl, was ich für Gedanken über euch habe, spricht der HERR: Gedanken des Friedens und nicht des Leides.',
-	reference: 'Jeremia 29,11'
+	text: 'Es leuchtet in der Finsternis, und die Finsternis hat es nicht auslöschen können.',
+	reference: 'Johannes 1,5'
 };

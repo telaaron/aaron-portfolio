@@ -1,7 +1,26 @@
 <script lang="ts">
 	import { meta, footerVerse, quickLinks } from '$lib/utils/constants';
+	import { language } from '$lib/stores/language';
+	import { t } from '$lib/utils/translations';
+	import { ArrowUp } from 'lucide-svelte';
+
+	let translations = $derived(t($language));
+	let showScrollTop = $state(false);
 
 	const currentYear = new Date().getFullYear();
+
+	$effect(() => {
+		function handleScroll() {
+			showScrollTop = window.scrollY > 500;
+		}
+		
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	});
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
 
 	// Icons
 	const icons: Record<string, string> = {
@@ -11,6 +30,17 @@
 		mail: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`
 	};
 </script>
+
+<!-- Scroll to Top Button -->
+{#if showScrollTop}
+	<button
+		onclick={scrollToTop}
+		class="fixed bottom-8 right-8 z-50 p-3 bg-orange-500 text-white rounded-full shadow-lg shadow-orange-500/30 hover:bg-orange-400 hover:scale-110 transition-all duration-300 animate-fade-in"
+		aria-label="Scroll to top"
+	>
+		<ArrowUp size={24} />
+	</button>
+{/if}
 
 <footer class="py-16 px-4 md:px-8 bg-deep-black border-t border-gray-900">
 	<div class="container max-w-6xl mx-auto">
@@ -40,14 +70,14 @@
 		<div class="text-center">
 			<p class="text-white font-medium mb-2">{meta.name}</p>
 			<p class="text-gray-600 text-sm">
-				{meta.location} • © {currentYear}
+				{meta.location} • © {currentYear} • {translations.footer.rights}
 			</p>
 		</div>
 
 		<!-- Built with -->
 		<div class="text-center mt-8">
 			<p class="text-gray-700 text-xs">
-				Gebaut mit SvelteKit, Tailwind CSS & Claude
+				{$language === 'de' ? 'Gebaut mit' : 'Built with'} SvelteKit, Tailwind CSS & Claude
 			</p>
 		</div>
 	</div>
