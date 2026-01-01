@@ -33,7 +33,7 @@
 <ManifestorMethod />
 <Frequenzen />
 <Bewegung />
-<!-- <Expeditionen /> --> <!-- noch baustelle -->
+<Expeditionen />
 <Lifestyle />
 <Contact />
 <FooterNew />

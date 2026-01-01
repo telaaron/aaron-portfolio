@@ -169,8 +169,8 @@
 		<!-- Value Proposition -->
 		<p class="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto">
 			{$language === 'de' 
-				? 'Builder. Musiker. Perfektionist, der in jedem das Gute sucht.' 
-				: 'Builder. Musician. Perfectionist who sees the good in everyone.'}
+				? 'Builder. Musiker. Visionär.' 
+				: 'Builder. Musician. Visionary.'}
 		</p>
 
 		<!-- Quick Links -->

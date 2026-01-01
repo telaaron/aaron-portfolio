@@ -9,8 +9,19 @@
 	let activeEnsemble = $state<number | null>(null);
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state(0);
+	let galleryExpanded = $state(false);
 	let translations = $derived(t($language));
 	let content = $derived(getFrequenzen($language));
+
+	// Show only first 4 media items (videos + images) initially
+	const initialMediaCount = 4;
+	const videoCount = $derived(content.videos?.length || 0);
+	const visibleGalleryCount = $derived(Math.max(0, initialMediaCount - videoCount));
+	const visibleGallery = $derived(
+		galleryExpanded 
+			? content.gallery 
+			: content.gallery?.slice(0, visibleGalleryCount) || []
+	);
 
 	function openLightbox(index: number) {
 		lightboxIndex = index;
@@ -117,7 +128,7 @@
 							</div>
 						{/each}
 					{/if}
-					{#each content.gallery as image, i}
+					{#each visibleGallery as image, i}
 						<button 
 							class="aspect-square bg-gray-800 rounded-xl overflow-hidden group cursor-pointer border-0 p-0"
 							onclick={() => openLightbox(i)}
@@ -130,6 +141,28 @@
 						</button>
 					{/each}
 				</div>
+				
+				<!-- Expand/Collapse Button -->
+				{#if content.gallery.length > visibleGalleryCount}
+					<div class="text-center mt-6">
+						<button
+							onclick={() => galleryExpanded = !galleryExpanded}
+							class="px-6 py-3 bg-purple-900/20 border border-purple-800/30 rounded-full text-purple-300 text-sm hover:bg-purple-900/30 hover:border-purple-700 transition-all duration-300 flex items-center gap-2 mx-auto"
+						>
+							{#if galleryExpanded}
+								<span>{$language === 'de' ? 'Weniger anzeigen' : 'Show less'}</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="m18 15-6-6-6 6"/>
+								</svg>
+							{:else}
+								<span>{$language === 'de' ? `+${content.gallery.length - visibleGalleryCount} weitere Momente` : `+${content.gallery.length - visibleGalleryCount} more moments`}</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="m6 9 6 6 6-6"/>
+								</svg>
+							{/if}
+						</button>
+					</div>
+				{/if}
 			</div>
 		{/if}
 	</div>

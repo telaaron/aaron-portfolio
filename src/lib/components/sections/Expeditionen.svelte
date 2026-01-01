@@ -82,10 +82,23 @@
 					<p class="text-gray-500 text-xs uppercase tracking-widest mb-4">{translations.expeditionen.planned}</p>
 					<div class="space-y-2">
 						{#each content.planned as plan}
-							<p class="text-gray-400 text-sm flex items-center gap-2">
-								<span class="text-orange-400">○</span>
-								{plan}
-							</p>
+							{#if typeof plan === 'string'}
+								<p class="text-gray-400 text-sm flex items-center gap-2">
+									<span class="text-orange-400">○</span>
+									{plan}
+								</p>
+							{:else}
+								<div class="p-3 bg-gray-900/30 border border-gray-800 rounded-lg">
+									<div class="flex items-center justify-between">
+										<div>
+											<p class="text-gray-300 font-medium text-sm">{plan.name}</p>
+											<p class="text-gray-500 text-xs">{plan.location} • {plan.year}</p>
+										</div>
+										<span class="text-xs bg-orange-500/20 text-orange-400 px-2 py-1 rounded">{plan.status}</span>
+									</div>
+									<p class="text-gray-400 text-xs mt-2">{plan.teaser}</p>
+								</div>
+							{/if}
 						{/each}
 					</div>
 				</div>

@@ -7,7 +7,6 @@
 	let content = $derived(getBewegung($language));
 
 	let isVisible = $state(false);
-	let expandedActivity = $state<string | null>(null);
 
 	$effect(() => {
 		const observer = new IntersectionObserver(
@@ -26,10 +25,6 @@
 
 		return () => observer.disconnect();
 	});
-
-	function toggleActivity(id: string) {
-		expandedActivity = expandedActivity === id ? null : id;
-	}
 </script>
 
 <section id="bewegung" class="py-24 px-4 md:px-8 bg-deep-black relative overflow-hidden">
@@ -47,12 +42,8 @@
 		<!-- Activities grid -->
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-200">
 			{#each content.activities as activity, i}
-				{@const isExpanded = expandedActivity === activity.id}
-				{@const isCalisthenics = activity.id === 'calisthenics'}
-				
-				<button
-					class="text-left p-6 bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 {isExpanded ? 'border-cyan-500 bg-cyan-900/10 md:col-span-2 lg:col-span-1' : ''} {isCalisthenics ? 'md:row-span-2' : ''}"
-					onclick={() => isCalisthenics ? null : toggleActivity(activity.id)}
+				<div
+					class="p-6 bg-gray-900/50 border border-gray-800 rounded-2xl"
 					style="animation-delay: {i * 100}ms"
 				>
 					<!-- Header -->
@@ -67,8 +58,15 @@
 					<h3 class="text-xl font-bold text-white mb-2">{activity.name}</h3>
 					<p class="text-gray-400 text-sm mb-4">{activity.description}</p>
 
-					<!-- Details (for Calisthenics, always show; for others, show on expand) -->
-					{#if activity.details && (isCalisthenics || isExpanded)}
+					<!-- Image (if available) -->
+					{#if activity.image}
+						<div class="mb-4 rounded-lg overflow-hidden">
+							<img src={activity.image} alt={activity.name} class="w-full h-48 object-cover" />
+						</div>
+					{/if}
+
+					<!-- Details -->
+					{#if activity.details}
 						<div class="space-y-2 pt-4 border-t border-gray-800">
 							{#each activity.details as detail}
 								<div class="flex items-center gap-2 text-sm">
@@ -78,7 +76,7 @@
 							{/each}
 						</div>
 					{/if}
-				</button>
+				</div>
 			{/each}
 		</div>
 	</div>

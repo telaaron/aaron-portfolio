@@ -8,8 +8,7 @@ import type { Language } from '$lib/stores/language';
 export const quickLinks = [
 	{ name: 'Instagram', url: 'https://instagram.com/telaaron', icon: 'instagram' },
 	{ name: 'YouTube', url: 'https://www.youtube.com/@telaaron5776', icon: 'youtube' },
-	{ name: 'GitHub', url: 'https://github.com/telaaron', icon: 'github' },
-	{ name: 'E-Mail', url: 'mailto:aaron@pfuetzners.com', icon: 'mail' }
+	{ name: 'GitHub', url: 'https://github.com/telaaron', icon: 'github' }
 ];
 
 // Personal Meta
@@ -150,7 +149,7 @@ export const frequenzenContent = {
 		youtubeVideos: [
 			{
 				title: 'Klavier mit 10 Jahren',
-				url: 'https://youtu.be/WnFQ0LrVwHQ?si=z-zI3r7cG1YkT6hn',
+				url: 'https://youtu.be/s8ZM3CSoohM?si=MGkRTzN2HtixYTF5',
 				year: 2016
 			},
 			{
@@ -266,19 +265,27 @@ export const bewegungContent = {
 				icon: '❄️',
 				description: 'Kälte-Mindset & Atemtechnik',
 				details: [
-					'Cold Exposure Training',
-					'Atemtechniken & Kontrolle',
-					'Mentale Stärke',
-					'Immunsystem Boost',
-					'Eisbaden Schlachtensee'
+					'Eisbaden im Schlachtensee',
+					'3-4 Runden Atemtechnik täglich',
+					'Kalte Duschen am Morgen',
+					'Mentale Stärke & Fokus',
+					'Immunsystem & Recovery',
+					'Stress-Resistenz aufbauen'
 				],
-				frequency: '2-3x/Woche'
+				frequency: '2-3x/Woche',
+				image: '/images/bewegung/eisbaden.jpg'
 			},
 			{
 				id: 'running',
 				name: 'Laufen',
 				icon: '🏃',
 				description: '10km Runs',
+				details: [
+					'Regelmäßige 10km Läufe',
+					'Ausdauer & Cardio',
+					'Recovery zwischen Workouts',
+					'Mental Clarity'
+				],
 				frequency: '1x/Woche'
 			}
 		]
@@ -305,19 +312,27 @@ export const bewegungContent = {
 				icon: '❄️',
 				description: 'Cold Mindset & Breathing Technique',
 				details: [
-					'Cold Exposure Training',
-					'Breathing Techniques & Control',
-					'Mental Strength',
-					'Immune System Boost',
-					'Ice Bathing Schlachtensee'
+					'Ice Bathing in Schlachtensee',
+					'3-4 Breathing Rounds Daily',
+					'Cold Showers in the Morning',
+					'Mental Strength & Focus',
+					'Immune System & Recovery',
+					'Build Stress Resistance'
 				],
-				frequency: '2-3x/week'
+				frequency: '2-3x/week',
+				image: '/images/bewegung/eisbaden.jpg'
 			},
 			{
 				id: 'running',
 				name: 'Running',
 				icon: '🏃',
 				description: '10km Runs',
+				details: [
+					'Regular 10km Runs',
+					'Endurance & Cardio',
+					'Recovery Between Workouts',
+					'Mental Clarity'
+				],
 				frequency: '1x/week'
 			}
 		]
@@ -331,69 +346,85 @@ export const expeditionenContent = {
 				id: 'marathon',
 				name: 'Marathon',
 				year: 2024,
-				location: 'Berlin',
+				location: 'Berlin – Schlachtensee',
 				image: '/images/marathon-finish.jpg',
 				stats: {
-					time: '5:30',
-					team: '3 Leute',
-					style: 'Auf eigene Faust'
+					time: '5:30h',
+					team: '2 Läufer + 1 Radbegleitung',
+					training: '20 Leute Community'
 				},
-				story:
-					'Kein offizieller Lauf. Einfach losgerannt mit einem Freund der mitlief und einem der uns mit dem Rad begleitet hat.',
-				tags: ['Laufen', 'DIY', 'Freunde']
+				story: `Sah auf YouTube jemanden der mehrere Marathons in einer Woche lief. Dachte: Kann ich auch.
+
+Flyer erstellt, WhatsApp-Community gegründet – in der Spitze 20 Leute. Gemeinsam trainiert, Trainingsplan durchgezogen. Mein Highlight: Wache auf, 2 Blöcke Schulausfall. Dachte mir: Okay, dann lauf ich jetzt 30km. 6x die gleiche 5km-Runde, jedes Mal die Pferde gegrüßt. In 3 Stunden. Sehr stark.
+
+Am Termintag war ich krank – verschoben. Am Ende zu zweit gelaufen plus Philipp mit dem Rad. Apple Watch musste mehrfach an die Powerbank, wir sind falsch gelaufen und mussten umdrehen, und Philipp hat sein Rad jede verdammte Treppe hochgetragen.
+
+Als wir ankamen war ich so happy, dass ich es jedem Stranger erzählen musste. Ein Opa kam aus dem Wasser – meinte er trainiert gerade für den IronMan.`,
+				tags: ['Laufen', 'Community', 'DIY', 'Durchhalten']
 			},
 			{
 				id: 'balkangurken',
 				name: 'Balkan-Gurken',
 				year: 2024,
-				location: 'Balkan',
+				location: 'Transdinarica: Udine → Split',
 				image: '/images/BalkanGurken/1F3A6C87-BB3C-4E31-8441-ED511CFB70D9_1_105_c.jpeg',
 				stats: {
-					time: '10 Tage',
-					team: '4 Leute',
-					distance: '2000km'
+					distance: '720km',
+					elevation: '5.000hm',
+					time: '9 Tage'
 				},
-				story: 'Roadtrip durch den Balkan – von Deutschland bis nach Kroatien und zurück.',
-				tags: ['Roadtrip', 'Balkan', 'Abenteuer'],
+				story: `Transdinarica-Route: Von Triest nach Split mit dem Rad. Das war der Plan.
+
+Nach 24h Zugfahrt kommen wir in Udine an – weil der Zug nach Triest uns einfach nicht mitgenommen hat. Zelt irgendwo aufgeschlagen. So beginnt die Reise.
+
+Was folgte: Geisteskranke Höhenmeter. Absurde Distanzen. Wind der unseren Kochtopf weggeweht hat. Von der Polizei verfolgt. In einer Schafherde gezeltet. Schlangen. Anstiege die man nicht mehr fahren konnte – nur noch schieben. Lost Places wo wir bei Bora-Winden gepennt haben. Komplett einsturzgefährdet. Aber trocken.
+
+In Split angekommen: Erstmal chillen. Dann mit dort gefundenen Fahrradkartons im Schulbus zum Airport. Mit unseren Rädern nach Hause geflogen.
+
+Das war die Kurzfassung. Vielleicht kommt 2026 ein Film.`,
+				tags: ['Bikepacking', 'Transdinarica', 'Chaos', 'Abenteuer'],
+				comingSoon: 'Film 2026',
 				gallery: [
 					{
 						url: '/images/BalkanGurken/1F3A6C87-BB3C-4E31-8441-ED511CFB70D9_1_105_c.jpeg',
-						caption: 'Start der Reise'
+						caption: 'Tag 1 – Udine statt Triest'
 					},
 					{
 						url: '/images/BalkanGurken/69DCBC63-58B8-4EC1-B44F-23AC9734D530_1_105_c.jpeg',
-						caption: 'Unterwegs'
+						caption: 'Anstiege die man nicht mehr fahren konnte'
 					},
 					{
 						url: '/images/BalkanGurken/742006F7-DE5E-43BD-B51B-098AB5775E32_1_105_c.jpeg',
-						caption: 'Zwischenstopp'
+						caption: 'Lost Place bei Bora-Wind'
 					},
 					{
 						url: '/images/BalkanGurken/811DC580-0CA8-4F2B-B7D0-CCF5E0B3DC6D_4_5005_c.jpeg',
-						caption: 'Adriatische Küste'
+						caption: 'Adriatische Küste – endlich flach'
 					},
 					{
 						url: '/images/BalkanGurken/9B46DA1C-BB29-462B-AE20-BFE3E66193B1_4_5005_c.jpeg',
-						caption: 'Abends am Meer'
+						caption: 'Split – geschafft'
 					}
 				]
-			},
-			{
-				id: 'bike-tour',
-				name: 'Radtour',
-				year: 2024,
-				location: 'Deutschland',
-				image: '/images/bike-tour.jpg',
-				stats: {
-					distance: '400km',
-					time: '4 Tage',
-					team: '2 Leute'
-				},
-				story: 'Von München nach Nürnberg – einfach losgefahren ohne Plan.',
-				tags: ['Radfahren', 'Deutschland', 'Spontan']
 			}
 		],
 		planned: [
+			{
+				id: 'gr20',
+				name: 'GR20',
+				year: 2023,
+				location: 'Korsika',
+				teaser: 'Europas härtester Fernwanderweg. Mit 3 Schulkameraden.',
+				status: 'Coming Soon'
+			},
+			{
+				id: 'alpencross',
+				name: 'Alpenüberquerung',
+				year: 2024,
+				location: 'Alpen',
+				teaser: 'Zu 11 gestartet, zu 7 angekommen.',
+				status: 'Coming Soon'
+			},
 			'Island 2025',
 			'Nordkap mit dem Rad'
 		]
@@ -404,69 +435,85 @@ export const expeditionenContent = {
 				id: 'marathon',
 				name: 'Marathon',
 				year: 2024,
-				location: 'Berlin',
+				location: 'Berlin – Schlachtensee',
 				image: '/images/marathon-finish.jpg',
 				stats: {
-					time: '5:30',
-					team: '3 people',
-					style: 'On our own'
+					time: '5:30h',
+					team: '2 runners + 1 bike support',
+					training: '20 people community'
 				},
-				story:
-					'No official race. Just started running with a friend who ran along and one who accompanied us by bike.',
-				tags: ['Running', 'DIY', 'Friends']
+				story: `Saw someone on YouTube who ran multiple marathons in one week. Thought: I can do that too.
+
+Created flyers, started a WhatsApp community – peaked at 20 people. Trained together, followed a training plan. My highlight: Woke up, saw I had 2 blocks of school cancelled. Thought: Okay, I'll run 30km now. 6x the same 5km loop, greeted the horses every time. In 3 hours. Very strong.
+
+On race day I was sick – postponed. In the end, ran it with one friend plus Philipp on his bike. Apple Watch needed charging multiple times, we took wrong turns and had to backtrack, and Philipp carried his bike up every damn staircase.
+
+When we finished I was so happy I had to tell every stranger. An old man came out of the lake – said he was training for an IronMan.`,
+				tags: ['Running', 'Community', 'DIY', 'Perseverance']
 			},
 			{
 				id: 'balkangurken',
 				name: 'Balkan Cucumbers',
 				year: 2024,
-				location: 'Balkans',
+				location: 'Transdinarica: Udine → Split',
 				image: '/images/BalkanGurken/1F3A6C87-BB3C-4E31-8441-ED511CFB70D9_1_105_c.jpeg',
 				stats: {
-					time: '10 days',
-					team: '4 people',
-					distance: '2000km'
+					distance: '720km',
+					elevation: '5,000m',
+					time: '9 days'
 				},
-				story: 'Road trip through the Balkans – from Germany to Croatia and back.',
-				tags: ['Road Trip', 'Balkans', 'Adventure'],
+				story: `Transdinarica route: Trieste to Split by bike. That was the plan.
+
+After 24h on trains we arrive in Udine – because the train to Trieste simply refused to take us. Set up tent somewhere random. And so the journey begins.
+
+What followed: Insane elevation gain. Absurd distances. Wind that blew away our cooking pot. Chased by police. Camped in a sheep herd. Snakes. Climbs you couldn't ride anymore – just push. Lost places where we slept during Bora winds. Completely unsafe structures. But dry.
+
+Arrived in Split: First, chill. Then found cardboard bike boxes, took a school bus to the airport. Flew home with our bikes.
+
+That was the short version. Maybe a film in 2026.`,
+				tags: ['Bikepacking', 'Transdinarica', 'Chaos', 'Adventure'],
+				comingSoon: 'Film 2026',
 				gallery: [
 					{
 						url: '/images/BalkanGurken/1F3A6C87-BB3C-4E31-8441-ED511CFB70D9_1_105_c.jpeg',
-						caption: 'Start of journey'
+						caption: 'Day 1 – Udine instead of Trieste'
 					},
 					{
 						url: '/images/BalkanGurken/69DCBC63-58B8-4EC1-B44F-23AC9734D530_1_105_c.jpeg',
-						caption: 'On the road'
+						caption: 'Climbs you couldn\'t ride anymore'
 					},
 					{
 						url: '/images/BalkanGurken/742006F7-DE5E-43BD-B51B-098AB5775E32_1_105_c.jpeg',
-						caption: 'Pit stop'
+						caption: 'Lost place during Bora winds'
 					},
 					{
 						url: '/images/BalkanGurken/811DC580-0CA8-4F2B-B7D0-CCF5E0B3DC6D_4_5005_c.jpeg',
-						caption: 'Adriatic coast'
+						caption: 'Adriatic coast – finally flat'
 					},
 					{
 						url: '/images/BalkanGurken/9B46DA1C-BB29-462B-AE20-BFE3E66193B1_4_5005_c.jpeg',
-						caption: 'Evening by the sea'
+						caption: 'Split – made it'
 					}
 				]
-			},
-			{
-				id: 'bike-tour',
-				name: 'Bike Tour',
-				year: 2024,
-				location: 'Germany',
-				image: '/images/bike-tour.jpg',
-				stats: {
-					distance: '400km',
-					time: '4 days',
-					team: '2 people'
-				},
-				story: 'From Munich to Nuremberg – just started riding without a plan.',
-				tags: ['Cycling', 'Germany', 'Spontaneous']
 			}
 		],
 		planned: [
+			{
+				id: 'gr20',
+				name: 'GR20',
+				year: 2023,
+				location: 'Corsica',
+				teaser: 'Europe\'s toughest long-distance trail. With 3 school friends.',
+				status: 'Coming Soon'
+			},
+			{
+				id: 'alpencross',
+				name: 'Alpine Crossing',
+				year: 2024,
+				location: 'Alps',
+				teaser: 'Started with 11, finished with 7.',
+				status: 'Coming Soon'
+			},
 			'Iceland 2025',
 			'North Cape by Bike'
 		]

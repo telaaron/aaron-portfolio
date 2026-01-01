@@ -134,7 +134,7 @@ export const frequenzen = {
 	youtubeVideos: [
 		{
 			title: 'Klavier mit 10 Jahren',
-			url: 'https://youtu.be/s8ZM3CSoohM?si=rfp-ACwGxfUnXqDN',
+			url: 'https://youtu.be/s8ZM3CSoohM?si=MGkRTzN2HtixYTF5',
 			year: 2016
 		},
 		{
