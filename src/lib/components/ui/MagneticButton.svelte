@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { onMount } from 'svelte';
+	import { ensureGSAP } from '$lib/utils/animations';
 
 	interface Props {
 		href?: string;
@@ -11,23 +13,40 @@
 	let { href, class: className = '', children, onclick }: Props = $props();
 
 	let button: HTMLElement | undefined = $state();
-	let x = $state(0);
-	let y = $state(0);
+	let gsapInstance: any = null;
+
+	onMount(async () => {
+		const { gsap } = await ensureGSAP();
+		gsapInstance = gsap;
+	});
 
 	function handleMouseMove(e: MouseEvent) {
-		if (!button) return;
+		if (!button || !gsapInstance) return;
 
 		const rect = button.getBoundingClientRect();
 		const centerX = rect.left + rect.width / 2;
 		const centerY = rect.top + rect.height / 2;
 
-		x = (e.clientX - centerX) * 0.3;
-		y = (e.clientY - centerY) * 0.3;
+		const x = (e.clientX - centerX) * 0.35;
+		const y = (e.clientY - centerY) * 0.35;
+
+		gsapInstance.to(button, {
+			x,
+			y,
+			duration: 0.3,
+			ease: 'power2.out'
+		});
 	}
 
 	function handleMouseLeave() {
-		x = 0;
-		y = 0;
+		if (!button || !gsapInstance) return;
+		
+		gsapInstance.to(button, {
+			x: 0,
+			y: 0,
+			duration: 0.5,
+			ease: 'elastic.out(1, 0.5)'
+		});
 	}
 </script>
 
@@ -38,7 +57,6 @@
 		class="magnetic-button inline-block {className}"
 		onmousemove={handleMouseMove}
 		onmouseleave={handleMouseLeave}
-		style="transform: translate({x}px, {y}px)"
 	>
 		{@render children()}
 	</a>
@@ -49,7 +67,6 @@
 		onmousemove={handleMouseMove}
 		onmouseleave={handleMouseLeave}
 		{onclick}
-		style="transform: translate({x}px, {y}px)"
 	>
 		{@render children()}
 	</button>
@@ -57,6 +74,6 @@
 
 <style>
 	.magnetic-button {
-		transition: transform 0.2s ease-out;
+		will-change: transform;
 	}
 </style>

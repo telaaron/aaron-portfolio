@@ -2,11 +2,22 @@
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/utils/translations';
 	import { Send, CheckCircle, AlertCircle } from 'lucide-svelte';
+	import { onMount } from 'svelte';
+	import { 
+		sectionTitleReveal,
+		blurFadeSection,
+		ensureGSAP,
+		cleanupScrollTriggers 
+	} from '$lib/utils/animations';
 
 	let translations = $derived(t($language));
 
 	let formState = $state<'idle' | 'submitting' | 'success' | 'error'>('idle');
 	let errorMessage = $state('');
+	
+	// Element refs
+	let titleRef = $state<HTMLElement | null>(null);
+	let formRef = $state<HTMLElement | null>(null);
 
 	let formData = $state({
 		name: '',
@@ -60,46 +71,78 @@
 		errorMessage = '';
 	}
 
-	let isVisible = $state(false);
-
-	$effect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						isVisible = true;
+	onMount(() => {
+		setTimeout(async () => {
+			const { gsap } = await ensureGSAP();
+			if (!gsap) return;
+			
+			// Section label
+			const label = document.querySelector('#kontakt .section-label');
+			if (label) {
+				gsap.fromTo(label,
+					{ opacity: 0, y: 20 },
+					{
+						opacity: 1,
+						y: 0,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: label,
+							start: 'top 98%',
+							end: 'top 75%',
+							scrub: 1
+						}
 					}
-				});
-			},
-			{ threshold: 0.1 }
-		);
+				);
+			}
+			
+			if (titleRef) await sectionTitleReveal(titleRef);
+			
+			// Description text
+			const descText = document.querySelector('#kontakt .desc-text');
+			if (descText) {
+				gsap.fromTo(descText,
+					{ opacity: 0, y: 25 },
+					{
+						opacity: 1,
+						y: 0,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: descText,
+							start: 'top 95%',
+							end: 'top 70%',
+							scrub: 1
+						}
+					}
+				);
+			}
+			
+			// Premium blur-fade section reveal
+			if (formRef) await blurFadeSection(formRef);
+		}, 100);
 
-		const section = document.getElementById('kontakt');
-		if (section) observer.observe(section);
-
-		return () => observer.disconnect();
+		return () => cleanupScrollTriggers();
 	});
 </script>
 
 <section id="kontakt" class="py-24 px-4 md:px-8 bg-gray-900/30 relative overflow-hidden">
 	<div class="container max-w-4xl mx-auto relative z-10">
-		<!-- Section header -->
-		<div class="text-center mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700">
-			<p class="text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">
+		<!-- Section header with GSAP -->
+		<div class="text-center mb-16">
+			<p class="section-label opacity-0 text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">
 				{$language === 'de' ? 'Kontakt' : 'Contact'}
 			</p>
-			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+			<h2 bind:this={titleRef} class="text-4xl md:text-5xl font-bold text-white mb-4">
 				{$language === 'de' ? 'Lass uns reden' : "Let's Talk"}
 			</h2>
-			<p class="text-gray-400 max-w-xl mx-auto">
+			<p class="desc-text opacity-0 text-gray-400 max-w-xl mx-auto">
 				{$language === 'de' 
 					? 'Interesse an einer Zusammenarbeit, Klavierunterricht oder einfach nur ein Gespräch? Schreib mir!' 
 					: 'Interested in collaboration, piano lessons, or just a chat? Get in touch!'}
 			</p>
 		</div>
 
-		<!-- Form -->
-		<div class="{isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-200">
+		<!-- Form with mask reveal -->
+		<div bind:this={formRef}>
 			{#if formState === 'success'}
 				<div class="text-center py-16 bg-gray-900/50 border border-green-500/30 rounded-2xl">
 					<CheckCircle size={64} class="text-green-500 mx-auto mb-6" />
@@ -213,10 +256,10 @@
 		</div>
 
 		<!-- Alternative contact -->
-		<div class="text-center mt-12 text-gray-500 text-sm {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-400">
+		<div class="text-center mt-12 text-gray-500 text-sm">
 			<p>
 				{$language === 'de' ? 'Oder schreib mir direkt an' : 'Or email me directly at'}{' '}
-				<a href="mailto:aaron@pfuetzners.com" class="text-orange-400 hover:text-orange-300 transition-colors">
+				<a href="mailto:aaron@pfuetzners.com" class="text-orange-400 hover:text-orange-300 transition-colors hover:underline">
 					aaron@pfuetzners.com
 				</a>
 			</p>

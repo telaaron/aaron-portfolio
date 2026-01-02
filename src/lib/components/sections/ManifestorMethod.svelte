@@ -3,76 +3,155 @@
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/utils/translations';
 	import TiltCard from '$lib/components/ui/TiltCard.svelte';
+	import { onMount } from 'svelte';
+	import { 
+		sectionTitleReveal,
+		staggerRotateReveal,
+		perspectiveEntrance,
+		ensureGSAP,
+		cleanupScrollTriggers 
+	} from '$lib/utils/animations';
 
-	let isVisible = $state(false);
 	let translations = $derived(t($language));
 	let content = $derived(getManifestorMethod($language));
-
-	$effect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						isVisible = true;
+	
+	// Element refs
+	let sectionRef = $state<HTMLElement | null>(null);
+	let titleRef = $state<HTMLElement | null>(null);
+	let descRef = $state<HTMLElement | null>(null);
+	let processRef = $state<HTMLElement | null>(null);
+	let toolsRef = $state<HTMLElement | null>(null);
+	let projectsRef = $state<HTMLElement | null>(null);
+	
+	onMount(() => {
+		setTimeout(async () => {
+			const { gsap, ScrollTrigger } = await ensureGSAP();
+			if (!gsap) return;
+			
+			// Section label
+			if (descRef) {
+				const label = descRef.querySelector('.section-label');
+				if (label) {
+					gsap.fromTo(label,
+						{ opacity: 0, y: 20 },
+						{
+							opacity: 1,
+							y: 0,
+							ease: 'none',
+							scrollTrigger: {
+								trigger: descRef,
+								start: 'top 98%',
+								end: 'top 75%',
+								scrub: 1
+							}
+						}
+					);
+				}
+			}
+			
+			if (titleRef) await sectionTitleReveal(titleRef);
+			
+			// Description texts with fade
+			if (descRef) {
+				const texts = descRef.querySelectorAll('.desc-text');
+				gsap.fromTo(texts,
+					{ opacity: 0, y: 30 },
+					{
+						opacity: 1,
+						y: 0,
+						stagger: 0.08,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: descRef,
+							start: 'top 95%',
+							end: 'top 65%',
+							scrub: 1
+						}
 					}
-				});
-			},
-			{ threshold: 0.1 }
-		);
+				);
+			}
+			
+			// Process flow with scale + blur entrance - EARLIER
+			if (processRef) {
+				const steps = processRef.querySelectorAll('.process-step');
+				gsap.fromTo(steps,
+					{ opacity: 0, scale: 0.85, filter: 'blur(4px)' },
+					{
+						opacity: 1,
+						scale: 1,
+						filter: 'blur(0px)',
+						stagger: 0.05,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: processRef,
+							start: 'top 100%',
+							end: 'top 55%',
+							scrub: 1
+						}
+					}
+				);
+			}
+			
+			// Tools with rotation stagger
+			if (toolsRef) await staggerRotateReveal(toolsRef, '.tool-tag', { stagger: 0.03, rotation: 8 });
+			
+			// Projects with perspective entrance
+			if (projectsRef) {
+				const projects = projectsRef.querySelectorAll(':scope > *');
+				projects.forEach(proj => perspectiveEntrance(proj as HTMLElement));
+			}
+		}, 100);
 
-		const section = document.getElementById('manifestor');
-		if (section) observer.observe(section);
-
-		return () => observer.disconnect();
+		return () => cleanupScrollTriggers();
 	});
 </script>
 
-<section id="manifestor" class="py-24 px-4 md:px-8 bg-deep-black relative overflow-hidden">
+<section id="manifestor" bind:this={sectionRef} class="py-24 px-4 md:px-8 bg-deep-black relative overflow-hidden">
 	<!-- Background accent -->
 	<div class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-electric-blue/5 to-transparent pointer-events-none"></div>
 
 	<div class="container max-w-6xl mx-auto relative z-10">
-		<!-- Section header -->
-		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700">
-			<p class="text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.manifestorMethod.sectionLabel}</p>
-			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.manifestorMethod.tagline}</h2>
-			<p class="text-gray-400 text-lg max-w-2xl">
+		<!-- Section header with GSAP reveal -->
+		<div bind:this={descRef} class="mb-16">
+			<p class="section-label opacity-0 text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.manifestorMethod.sectionLabel}</p>
+			<h2 bind:this={titleRef} class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.manifestorMethod.tagline}</h2>
+			<p class="desc-text opacity-0 text-gray-400 text-lg max-w-2xl">
 				{translations.manifestorMethod.description}
 			</p>
-			<p class="text-orange-300 text-sm mt-4 font-mono italic">
+			<p class="desc-text opacity-0 text-orange-300 text-sm mt-4 font-mono italic">
 				{translations.manifestorMethod.philosophy}
 			</p>
 		</div>
 
-		<!-- Process visualization -->
-		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-200">
+		<!-- Process visualization with staggered reveal -->
+		<div bind:this={processRef} class="mb-16">
 			<div class="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-sm md:text-base">
-				<span class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-300">Impuls</span>
-				<span class="text-orange-400">→</span>
-				<span class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-300">Konzept</span>
-				<span class="text-orange-400">→</span>
-				<span class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-300">Design</span>
-				<span class="text-orange-400">→</span>
-				<span class="px-4 py-2 bg-orange-900/20 border border-orange-600 rounded-lg text-orange-400 font-semibold">AI baut</span>
-				<span class="text-orange-400">→</span>
-				<span class="px-4 py-2 bg-green-900/30 border border-green-600 rounded-lg text-green-400">Realität</span>
+				<span class="process-step px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-300 opacity-0">Impuls</span>
+				<span class="process-step text-orange-400 opacity-0">→</span>
+				<span class="process-step px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-300 opacity-0">Konzept</span>
+				<span class="process-step text-orange-400 opacity-0">→</span>
+				<span class="process-step px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-gray-300 opacity-0">Design</span>
+				<span class="process-step text-orange-400 opacity-0">→</span>
+				<span class="process-step px-4 py-2 bg-orange-900/20 border border-orange-600 rounded-lg text-orange-400 font-semibold opacity-0">AI baut</span>
+				<span class="process-step text-orange-400 opacity-0">→</span>
+				<span class="process-step px-4 py-2 bg-green-900/30 border border-green-600 rounded-lg text-green-400 opacity-0">Realität</span>
 			</div>
 		</div>
 
-		<!-- Tools -->
-		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-300">
+		<!-- Tools with stagger animation -->
+		<div bind:this={toolsRef} class="mb-16">
 			<p class="text-gray-500 text-sm uppercase tracking-widest mb-4 text-center">{translations.manifestorMethod.tools}</p>
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each content.tools as tool}
-					<span class="px-4 py-2 bg-gray-900/50 border border-gray-800 rounded-full text-gray-400 text-sm font-mono">
+					<span class="tool-tag px-4 py-2 bg-gray-900/50 border border-gray-800 rounded-full text-gray-400 text-sm font-mono opacity-0 hover:border-orange-400 hover:text-orange-400 transition-colors cursor-default">
 						{tool}
 					</span>
 				{/each}
 			</div>
 		</div>
 
-		<!-- Projects -->
-		<div class="grid md:grid-cols-2 gap-6 md:auto-rows-fr {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-500">
+		<!-- Projects with 3D card reveal -->
+		<div bind:this={projectsRef} class="grid md:grid-cols-2 gap-6 md:auto-rows-fr">
 			{#each content.projects as project, i}
 				<TiltCard>
 					<div class="h-full bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors group overflow-hidden flex flex-col md:min-h-175">

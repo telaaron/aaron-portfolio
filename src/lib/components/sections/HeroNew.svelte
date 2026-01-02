@@ -4,6 +4,13 @@
 	import { language, toggleLanguage } from '$lib/stores/language';
 	import { t } from '$lib/utils/translations';
 	import MagneticButton from '$lib/components/ui/MagneticButton.svelte';
+	import { 
+		heroCharacterReveal, 
+		textWaveReveal,
+		floatingElement, 
+		mouseGradientSpotlight,
+		ensureGSAP 
+	} from '$lib/utils/animations';
 
 	// Icon components for social links
 	const icons: Record<string, string> = {
@@ -13,10 +20,21 @@
 		mail: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`
 	};
 
-	let isVisible = $state(false);
 	let canvas: HTMLCanvasElement | undefined;
 	let ctx: CanvasRenderingContext2D | null = null;
 	let animationId: number;
+	
+	// Element refs for GSAP
+	let firstNameRef: HTMLElement | null = $state(null);
+	let lastNameRef: HTMLElement | null = $state(null);
+	let subtitleRef: HTMLElement | null = $state(null);
+	let linksContainerRef: HTMLElement | null = $state(null);
+	let ctaContainerRef: HTMLElement | null = $state(null);
+	let scrollIndicatorRef: HTMLElement | null = $state(null);
+	let heroContainerRef: HTMLElement | null = $state(null);
+	
+	// Cleanup function for mouse gradient
+	let cleanupGradient: (() => void) | undefined;
 	
 	let translations = $derived(t($language));
 
@@ -134,16 +152,64 @@
 		};
 
 		window.addEventListener('resize', handleResize);
-		isVisible = true;
+		
+		// PREMIUM Hero Animations - Level 2
+		setTimeout(async () => {
+			const { gsap } = await ensureGSAP();
+			if (!gsap) return;
+			
+			// 3D Character reveal for first name (Linear-style)
+			if (firstNameRef) await heroCharacterReveal(firstNameRef, 0.2);
+			
+			// Wave text reveal for last name
+			if (lastNameRef) await textWaveReveal(lastNameRef, 0.6);
+			
+			// Subtitle with blur-in
+			if (subtitleRef) {
+				gsap.fromTo(subtitleRef,
+					{ opacity: 0, y: 30, filter: 'blur(10px)' },
+					{ opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, delay: 1, ease: 'power3.out' }
+				);
+			}
+			
+			// Stagger social links with rotation
+			if (linksContainerRef) {
+				const links = linksContainerRef.querySelectorAll('.social-link');
+				gsap.fromTo(links, 
+					{ opacity: 0, y: 40, rotation: -5, scale: 0.9 },
+					{ opacity: 1, y: 0, rotation: 0, scale: 1, duration: 0.8, stagger: 0.08, delay: 1.2, ease: 'back.out(1.5)' }
+				);
+			}
+			
+			// CTA buttons with spring effect
+			if (ctaContainerRef) {
+				const buttons = ctaContainerRef.querySelectorAll('.cta-btn');
+				gsap.fromTo(buttons,
+					{ opacity: 0, y: 30, scale: 0.95 },
+					{ opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.12, delay: 1.4, ease: 'elastic.out(1, 0.5)' }
+				);
+			}
+			
+			// Floating scroll indicator
+			if (scrollIndicatorRef) await floatingElement(scrollIndicatorRef, 8);
+		}, 100);
+		
+		// Mouse-following gradient spotlight
+		setTimeout(() => {
+			if (heroContainerRef) {
+				cleanupGradient = mouseGradientSpotlight(heroContainerRef);
+			}
+		}, 500);
 
 		return () => {
 			window.removeEventListener('resize', handleResize);
 			cancelAnimationFrame(animationId);
+			if (cleanupGradient) cleanupGradient();
 		};
 	});
 </script>
 
-<section class="hero min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-4 pt-32 md:pt-0">
+<section bind:this={heroContainerRef} class="hero min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-4 pt-32 md:pt-0">
 	<!-- Animated Grid Canvas -->
 	<canvas bind:this={canvas} class="absolute inset-0 z-0"></canvas>
 
@@ -159,24 +225,25 @@
 	</button>
 
 	<!-- Main content -->
-	<div class="relative z-10 text-center max-w-4xl mx-auto -mt-32 md:mt-0 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-1000">
-		<!-- Name -->
-		<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">
-			<span class="text-white">{meta.name.split(' ')[0]}</span>
-			<span class="bg-linear-to-r from-orange-400 via-orange-500 to-amber-400 bg-clip-text text-transparent">{meta.name.split(' ')[1]}</span>
+	<div class="relative z-10 text-center max-w-4xl mx-auto -mt-32 md:mt-0">
+		<!-- Name with GSAP text reveal -->
+		<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 perspective-1000">
+			<span bind:this={firstNameRef} class="text-white inline-block">Aaron</span>
+			<span> </span>
+			<span bind:this={lastNameRef} class="bg-linear-to-r from-orange-400 via-orange-500 to-amber-400 bg-clip-text text-transparent inline-block">Pfützner</span>
 		</h1>
 
-		<!-- Value Proposition -->
-		<p class="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto">
+		<!-- Value Proposition with blur reveal -->
+		<p bind:this={subtitleRef} class="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto opacity-0">
 			{$language === 'de' 
 				? 'Builder. Musiker. Visionär.' 
 				: 'Builder. Musician. Visionary.'}
 		</p>
 
-		<!-- Quick Links -->
-		<div class="flex flex-wrap justify-center gap-4 mb-8">
+		<!-- Quick Links with stagger animation -->
+		<div bind:this={linksContainerRef} class="flex flex-wrap justify-center gap-4 mb-8">
 			{#each quickLinks as link}
-				<MagneticButton href={link.url} class="group">
+				<MagneticButton href={link.url} class="group social-link opacity-0">
 					<div class="flex items-center gap-3 px-6 py-3 bg-gray-900/50 border border-gray-800 rounded-full hover:border-electric-blue hover:bg-gray-900 transition-all duration-300">
 						<span class="text-gray-400 group-hover:text-electric-blue transition-colors">
 							{@html icons[link.icon]}
@@ -189,25 +256,25 @@
 			{/each}
 		</div>
 
-		<!-- CTA Buttons -->
-		<div class="flex flex-wrap justify-center gap-4 mb-16">
+		<!-- CTA Buttons with stagger animation -->
+		<div bind:this={ctaContainerRef} class="flex flex-wrap justify-center gap-4 mb-16">
 			<a 
 				href="#manifestor-method" 
-				class="px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:from-orange-400 hover:to-amber-400 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105"
+				class="cta-btn opacity-0 px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:from-orange-400 hover:to-amber-400 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105"
 			>
 				{translations.hero.viewProjects || 'Projekte ansehen'}
 			</a>
 			<a 
 				href="#kontakt" 
-				class="px-8 py-4 bg-gray-900/50 border border-gray-700 text-white font-semibold rounded-full hover:border-orange-400 hover:bg-gray-900 transition-all duration-300 hover:scale-105"
+				class="cta-btn opacity-0 px-8 py-4 bg-gray-900/50 border border-gray-700 text-white font-semibold rounded-full hover:border-orange-400 hover:bg-gray-900 transition-all duration-300 hover:scale-105"
 			>
 				{translations.hero.contact || 'Kontakt'}
 			</a>
 		</div>
 	</div>
 
-	<!-- Scroll Indicator -->
-	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+	<!-- Scroll Indicator with floating animation -->
+	<div bind:this={scrollIndicatorRef} class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
 		<a href="#manifestor-method" class="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-400 transition-colors">
 			<span class="text-xs uppercase tracking-widest">{translations.hero.scroll || 'Scroll'}</span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

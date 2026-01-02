@@ -4,14 +4,26 @@
 	import { t } from '$lib/utils/translations';
 	import Lightbox from '$lib/components/ui/Lightbox.svelte';
 	import YouTubeEmbed from '$lib/components/ui/YouTubeEmbed.svelte';
+	import { onMount } from 'svelte';
+	import { 
+		sectionTitleReveal,
+		ensureGSAP,
+		cleanupScrollTriggers 
+	} from '$lib/utils/animations';
 
-	let isVisible = $state(false);
 	let activeEnsemble = $state<number | null>(null);
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state(0);
 	let galleryExpanded = $state(false);
 	let translations = $derived(t($language));
 	let content = $derived(getFrequenzen($language));
+	
+	// Element refs
+	let titleRef = $state<HTMLElement | null>(null);
+	let ensemblesRef = $state<HTMLElement | null>(null);
+	let highlightsRef = $state<HTMLElement | null>(null);
+	let videosRef = $state<HTMLElement | null>(null);
+	let galleryRef = $state<HTMLElement | null>(null);
 
 	// Show only first 4 media items (videos + images) initially
 	const initialMediaCount = 4;
@@ -28,22 +40,136 @@
 		lightboxOpen = true;
 	}
 
-	$effect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						isVisible = true;
+	onMount(() => {
+		setTimeout(async () => {
+			const { gsap, ScrollTrigger } = await ensureGSAP();
+			if (!gsap) return;
+			
+			// Section label
+			const label = document.querySelector('#frequenzen .section-label');
+			if (label) {
+				gsap.fromTo(label,
+					{ opacity: 0, y: 20 },
+					{
+						opacity: 1,
+						y: 0,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: label,
+							start: 'top 98%',
+							end: 'top 75%',
+							scrub: 1
+						}
 					}
-				});
-			},
-			{ threshold: 0.1 }
-		);
+				);
+			}
+			
+			if (titleRef) await sectionTitleReveal(titleRef);
+			
+			// Ensembles with blur-scale entrance - EARLIER
+			if (ensemblesRef) {
+				const buttons = ensemblesRef.querySelectorAll('button');
+				gsap.fromTo(buttons,
+					{ opacity: 0, scale: 0.88, filter: 'blur(6px)', y: 30 },
+					{
+						opacity: 1,
+						scale: 1,
+						filter: 'blur(0px)',
+						y: 0,
+						stagger: 0.06,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: ensemblesRef,
+							start: 'top 100%',
+							end: 'top 55%',
+							scrub: 1
+						}
+					}
+				);
+			}
+			
+			// Highlights with elastic pop - EARLIER
+			if (highlightsRef) {
+				const spans = highlightsRef.querySelectorAll('span');
+				gsap.fromTo(spans,
+					{ opacity: 0, scale: 0.75, rotation: -4 },
+					{
+						opacity: 1,
+						scale: 1,
+						rotation: 0,
+						stagger: 0.03,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: highlightsRef,
+							start: 'top 100%',
+							end: 'top 60%',
+							scrub: 1
+						}
+					}
+				);
+			}
+			
+			// YouTube Videos with stagger
+			if (videosRef) {
+				const heading = videosRef.querySelector('.video-heading');
+				if (heading) {
+					gsap.fromTo(heading,
+						{ opacity: 0, y: 30 },
+						{
+							opacity: 1,
+							y: 0,
+							ease: 'none',
+							scrollTrigger: {
+								trigger: videosRef,
+								start: 'top 100%',
+								end: 'top 70%',
+								scrub: 1
+							}
+						}
+					);
+				}
+				const videos = videosRef.querySelectorAll('.youtube-item');
+				gsap.fromTo(videos,
+					{ opacity: 0, y: 60, scale: 0.95 },
+					{
+						opacity: 1,
+						y: 0,
+						scale: 1,
+						stagger: 0.1,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: videosRef,
+							start: 'top 95%',
+							end: 'top 40%',
+							scrub: 1
+						}
+					}
+				);
+			}
+			
+			// Gallery with stagger
+			if (galleryRef) {
+				const heading = galleryRef.querySelector('.gallery-heading');
+				if (heading) {
+					gsap.fromTo(heading,
+						{ opacity: 0, y: 30 },
+						{
+							opacity: 1,
+							y: 0,
+							ease: 'none',
+							scrollTrigger: {
+								trigger: galleryRef,
+								start: 'top 100%',
+								end: 'top 70%',
+								scrub: 1
+							}
+						}
+					);
+				}
+			}
+		}, 100);
 
-		const section = document.getElementById('frequenzen');
-		if (section) observer.observe(section);
-
-		return () => observer.disconnect();
+		return () => cleanupScrollTriggers();
 	});
 
 	// Instrument icons - works for both DE and EN
@@ -62,17 +188,17 @@
 	<div class="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-deep-black to-transparent pointer-events-none"></div>
 
 	<div class="container max-w-6xl mx-auto relative z-10">
-		<!-- Section header -->
-		<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700">
-			<p class="text-purple-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.frequenzen.sectionLabel}</p>
-			<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.frequenzen.tagline}</h2>
+		<!-- Section header with GSAP -->
+		<div class="mb-16">
+			<p class="section-label opacity-0 text-purple-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.frequenzen.sectionLabel}</p>
+			<h2 bind:this={titleRef} class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.frequenzen.tagline}</h2>
 		</div>
 
-		<!-- Ensembles grid -->
-		<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-200">
+		<!-- Ensembles grid with stagger -->
+		<div bind:this={ensemblesRef} class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
 			{#each content.ensembles as ensemble, i}
 				<button
-					class="p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-xl text-left hover:border-purple-500/50 hover:bg-gray-900 transition-all duration-300 group {activeEnsemble === i ? 'border-purple-500 bg-purple-900/10' : ''}"
+					class="opacity-0 p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-xl text-left hover:border-purple-500/50 hover:bg-gray-900 transition-all duration-300 group hover:scale-105 {activeEnsemble === i ? 'border-purple-500 bg-purple-900/10' : ''}"
 					onmouseenter={() => activeEnsemble = i}
 					onmouseleave={() => activeEnsemble = null}
 				>
@@ -84,11 +210,11 @@
 			{/each}
 		</div>
 
-		<!-- Highlights -->
-		<div class="mb-12 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-400">
+		<!-- Highlights with stagger -->
+		<div bind:this={highlightsRef} class="mb-12">
 			<div class="flex flex-wrap gap-3 justify-center">
 				{#each content.highlights as highlight}
-					<span class="px-4 py-2 bg-purple-900/20 border border-purple-800/30 rounded-full text-purple-300 text-sm">
+					<span class="opacity-0 px-4 py-2 bg-purple-900/20 border border-purple-800/30 rounded-full text-purple-300 text-sm hover:bg-purple-900/30 hover:border-purple-700 transition-all cursor-default">
 						{highlight}
 					</span>
 				{/each}
@@ -97,14 +223,16 @@
 
 		<!-- YouTube Videos -->
 		{#if content.youtubeVideos.length > 0}
-			<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-500">
-				<p class="text-gray-500 text-sm uppercase tracking-widest mb-6 text-center">{translations.frequenzen.recordings}</p>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+			<div bind:this={videosRef} class="mb-16">
+				<p class="video-heading opacity-0 text-gray-500 text-sm uppercase tracking-widest mb-6 text-center">{translations.frequenzen.recordings}</p>
+				<div class="video-grid grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
 					{#each content.youtubeVideos as video}
-						<YouTubeEmbed 
-							videoId={video.url} 
-							title="{video.title} ({video.year})" 
-						/>
+						<div class="youtube-item opacity-0">
+							<YouTubeEmbed 
+								videoId={video.url} 
+								title="{video.title} ({video.year})" 
+							/>
+						</div>
 					{/each}
 				</div>
 			</div>
@@ -112,8 +240,8 @@
 
 		<!-- Photo Gallery -->
 		{#if content.gallery && content.gallery.length > 0}
-			<div class="mb-16 {isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-600">
-				<p class="text-gray-500 text-sm uppercase tracking-widest mb-6 text-center">{translations.frequenzen.moments}</p>
+			<div bind:this={galleryRef} class="mb-16">
+				<p class="gallery-heading opacity-0 text-gray-500 text-sm uppercase tracking-widest mb-6 text-center">{translations.frequenzen.moments}</p>
 				<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 					{#if content.videos && content.videos.length > 0}
 						{#each content.videos as video, i}

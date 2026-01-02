@@ -3,9 +3,12 @@
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/utils/translations';
 	import { ArrowUp } from 'lucide-svelte';
+	import { onMount } from 'svelte';
+	import { ensureGSAP, magneticHover } from '$lib/utils/animations';
 
 	let translations = $derived(t($language));
 	let showScrollTop = $state(false);
+	let scrollBtnRef = $state<HTMLButtonElement | null>(null);
 
 	const currentYear = new Date().getFullYear();
 
@@ -18,9 +21,29 @@
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
 
-	function scrollToTop() {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+	async function scrollToTop() {
+		const { gsap } = await ensureGSAP();
+		if (gsap) {
+			// Load ScrollToPlugin
+			const { ScrollToPlugin } = await import('gsap/dist/ScrollToPlugin');
+			gsap.registerPlugin(ScrollToPlugin);
+			
+			gsap.to(window, {
+				scrollTo: { y: 0 },
+				duration: 1.2,
+				ease: 'power3.inOut'
+			});
+		} else {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		}
 	}
+	
+	onMount(() => {
+		// Add magnetic hover to scroll button
+		if (scrollBtnRef) {
+			magneticHover(scrollBtnRef, 0.4);
+		}
+	});
 
 	// Icons
 	const icons: Record<string, string> = {
@@ -31,11 +54,12 @@
 	};
 </script>
 
-<!-- Scroll to Top Button -->
+<!-- Scroll to Top Button with magnetic effect -->
 {#if showScrollTop}
 	<button
+		bind:this={scrollBtnRef}
 		onclick={scrollToTop}
-		class="fixed bottom-8 right-8 z-50 p-3 bg-orange-500 text-white rounded-full shadow-lg shadow-orange-500/30 hover:bg-orange-400 hover:scale-110 transition-all duration-300 animate-fade-in"
+		class="fixed bottom-8 right-8 z-50 p-4 bg-orange-500 text-white rounded-full shadow-lg shadow-orange-500/30 hover:bg-orange-400 hover:shadow-orange-500/50 transition-all duration-300"
 		aria-label="Scroll to top"
 	>
 		<ArrowUp size={24} />
@@ -45,21 +69,21 @@
 <footer class="py-16 px-4 md:px-8 bg-deep-black border-t border-gray-900">
 	<div class="container max-w-6xl mx-auto">
 		<!-- Bible verse - subtle -->
-		<div class="text-center mb-12 opacity-60 hover:opacity-100 transition-opacity">
+		<div class="text-center mb-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
 			<p class="text-gray-500 italic text-sm max-w-2xl mx-auto">
 				„{footerVerse.text}"
 			</p>
 			<p class="text-gray-600 text-xs mt-2">{footerVerse.reference}</p>
 		</div>
 
-		<!-- Quick links -->
+		<!-- Quick links with hover effects -->
 		<div class="flex justify-center gap-4 mb-8">
 			{#each quickLinks as link}
 				<a
 					href={link.url}
 					target={link.icon === 'mail' ? undefined : '_blank'}
 					rel={link.icon === 'mail' ? undefined : 'noopener noreferrer'}
-					class="w-10 h-10 flex items-center justify-center bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-electric-blue hover:border-electric-blue transition-all"
+					class="w-10 h-10 flex items-center justify-center bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-electric-blue hover:border-electric-blue hover:scale-110 transition-all duration-300"
 				>
 					{@html icons[link.icon]}
 				</a>

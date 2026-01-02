@@ -1,19 +1,102 @@
 <script lang="ts">
 	import { language } from '$lib/stores/language';
-	import { fadeInUp, staggerFadeIn, cleanupScrollTriggers } from '$lib/utils/animations';
+	import { 
+		sectionTitleReveal, 
+		perspectiveEntrance, 
+		springCounter,
+		imageZoomClipReveal,
+		blurFadeSection,
+		ensureGSAP,
+		cleanupScrollTriggers 
+	} from '$lib/utils/animations';
+	import { onMount } from 'svelte';
 
 	let sectionRef = $state<HTMLElement | null>(null);
 	let headerRef = $state<HTMLElement | null>(null);
+	let titleRef = $state<HTMLElement | null>(null);
+	let verseRef = $state<HTMLElement | null>(null);
 	let storyRef = $state<HTMLElement | null>(null);
+	let portraitRef = $state<HTMLElement | null>(null);
 	let cardsRef = $state<HTMLElement | null>(null);
 	let statsRef = $state<HTMLElement | null>(null);
+	
+	// Stats refs for counter animation
+	let stat1Ref = $state<HTMLElement | null>(null);
+	let stat2Ref = $state<HTMLElement | null>(null);
+	let stat3Ref = $state<HTMLElement | null>(null);
+	let stat4Ref = $state<HTMLElement | null>(null);
 
-	$effect(() => {
-		// Initialize GSAP animations
-		if (headerRef) fadeInUp(headerRef);
-		if (storyRef) fadeInUp(storyRef, 0.1);
-		if (cardsRef) staggerFadeIn(cardsRef, '.card-item', 0.15);
-		if (statsRef) staggerFadeIn(statsRef, '.stat-item', 0.1);
+	onMount(() => {
+		// PREMIUM Level 2 - Next-level scroll animations
+		setTimeout(async () => {
+			const { gsap, ScrollTrigger } = await ensureGSAP();
+			if (!gsap) return;
+			
+			// Section label
+			if (headerRef) {
+				const label = headerRef.querySelector('.section-label');
+				if (label) {
+					gsap.fromTo(label,
+						{ opacity: 0, y: 20 },
+						{
+							opacity: 1,
+							y: 0,
+							ease: 'none',
+							scrollTrigger: {
+								trigger: headerRef,
+								start: 'top 98%',
+								end: 'top 75%',
+								scrub: 1
+							}
+						}
+					);
+				}
+			}
+			
+			// Title with blur reveal
+			if (titleRef) await sectionTitleReveal(titleRef);
+			
+			// Verse with blur-fade section transition
+			if (verseRef) await blurFadeSection(verseRef);
+			
+			// Story paragraphs with rotation stagger - EARLIER
+			if (storyRef) {
+				const paragraphs = storyRef.querySelectorAll('p');
+				gsap.fromTo(paragraphs,
+					{ opacity: 0, y: 40, rotation: 1.5 },
+					{
+						opacity: 1,
+						y: 0,
+						rotation: 0,
+						stagger: 0.1,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: storyRef,
+							start: 'top 100%',
+							end: 'top 50%',
+							scrub: 1
+						}
+					}
+				);
+			}
+			
+			// Portrait with zoom + clip-path combined
+			if (portraitRef) await imageZoomClipReveal(portraitRef);
+			
+			// Cards with 3D perspective entrance
+			if (cardsRef) {
+				const cards = cardsRef.querySelectorAll('.card-item');
+				cards.forEach((card, i) => {
+					perspectiveEntrance(card as HTMLElement);
+				});
+			}
+			
+			// Spring counter animations
+			if (stat1Ref) await springCounter(stat1Ref, 14, '+');
+			if (stat2Ref) await springCounter(stat2Ref, 3, '');
+			if (stat3Ref) await springCounter(stat3Ref, 2, '');
+			if (stat4Ref) await springCounter(stat4Ref, 4, '');
+		}, 100);
 
 		return () => cleanupScrollTriggers();
 	});
@@ -74,11 +157,11 @@ I strive to be authentic in my actions. Tech and music aren't separate worlds fo
 	<div class="container max-w-4xl mx-auto relative z-10">
 		<!-- Section header -->
 		<div bind:this={headerRef} class="text-center mb-16">
-			<p class="text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">{currentContent.sectionLabel}</p>
-			<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">{currentContent.tagline}</h2>
+			<p class="section-label opacity-0 text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">{currentContent.sectionLabel}</p>
+			<h2 bind:this={titleRef} class="text-4xl md:text-5xl font-bold text-white mb-6">{currentContent.tagline}</h2>
 			
-			<!-- Featured verse -->
-			<blockquote class="text-xl md:text-2xl text-gray-300 font-light italic max-w-2xl mx-auto">
+			<!-- Featured verse with mask reveal -->
+			<blockquote bind:this={verseRef} class="text-xl md:text-2xl text-gray-300 font-light italic max-w-2xl mx-auto">
 				{currentContent.verse}
 				<footer class="text-orange-400/60 text-base mt-2 not-italic">{currentContent.verseRef}</footer>
 			</blockquote>
@@ -89,13 +172,13 @@ I strive to be authentic in my actions. Tech and music aren't separate worlds fo
 			<!-- Story text -->
 			<div class="md:col-span-2 prose prose-lg prose-invert max-w-none">
 				{#each currentContent.story.split('\n\n') as paragraph}
-					<p class="text-gray-300 leading-relaxed mb-6">{paragraph}</p>
+					<p class="text-gray-300 leading-relaxed mb-6 opacity-0">{paragraph}</p>
 				{/each}
 			</div>
 			
-			<!-- Portrait -->
+			<!-- Portrait with scale reveal -->
 			<div class="md:col-span-1">
-				<div class="relative rounded-2xl overflow-hidden border border-gray-800 hover:border-orange-500/50 transition-colors duration-300">
+				<div bind:this={portraitRef} class="relative rounded-2xl overflow-hidden border border-gray-800 hover:border-orange-500/50 transition-colors duration-300">
 					<img 
 						src="/images/aaron-portrait.jpg" 
 						alt="Aaron - Builder, Musician, Creator"
@@ -139,23 +222,23 @@ I strive to be authentic in my actions. Tech and music aren't separate worlds fo
 			</div>
 		</div>
 
-		<!-- Stats -->
+		<!-- Stats with counter animation -->
 		<div bind:this={statsRef} class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-			<div class="stat-item text-center">
-				<p class="text-3xl md:text-4xl font-bold text-orange-400">14</p>
-				<p class="text-gray-500 text-sm mt-1">{$language === 'de' ? 'Jahre Musik' : 'Years of Music'}</p>
+			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
+				<p bind:this={stat1Ref} class="text-3xl md:text-4xl font-bold text-orange-400">0</p>
+				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Jahre Musik' : 'Years of Music'}</p>
 			</div>
-			<div class="stat-item text-center">
-				<p class="text-3xl md:text-4xl font-bold text-amber-400">3</p>
-				<p class="text-gray-500 text-sm mt-1">{$language === 'de' ? 'Klavierschüler' : 'Piano Students'}</p>
+			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
+				<p bind:this={stat2Ref} class="text-3xl md:text-4xl font-bold text-amber-400">0</p>
+				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Klavierschüler' : 'Piano Students'}</p>
 			</div>
-			<div class="stat-item text-center">
-				<p class="text-3xl md:text-4xl font-bold text-orange-400">2</p>
-				<p class="text-gray-500 text-sm mt-1">{$language === 'de' ? 'AI-Projekte' : 'AI Projects'}</p>
+			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
+				<p bind:this={stat3Ref} class="text-3xl md:text-4xl font-bold text-orange-400">0</p>
+				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'AI-Projekte' : 'AI Projects'}</p>
 			</div>
-			<div class="stat-item text-center">
-				<p class="text-3xl md:text-4xl font-bold text-amber-400">4</p>
-				<p class="text-gray-500 text-sm mt-1">{$language === 'de' ? 'Ensembles' : 'Ensembles'}</p>
+			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
+				<p bind:this={stat4Ref} class="text-3xl md:text-4xl font-bold text-amber-400">0</p>
+				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Ensembles' : 'Ensembles'}</p>
 			</div>
 		</div>
 	</div>

@@ -266,10 +266,7 @@ export const bewegungContent = {
 				description: 'Kälte-Mindset & Atemtechnik',
 				details: [
 					'Eisbaden im Schlachtensee',
-					'3-4 Runden Atemtechnik täglich',
 					'Kalte Duschen am Morgen',
-					'Mentale Stärke & Fokus',
-					'Immunsystem & Recovery',
 					'Stress-Resistenz aufbauen'
 				],
 				frequency: '2-3x/Woche',
