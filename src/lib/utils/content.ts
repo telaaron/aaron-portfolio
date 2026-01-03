@@ -403,17 +403,66 @@ Das war die Kurzfassung. Vielleicht kommt 2026 ein Film.`,
 						caption: 'Split – geschafft'
 					}
 				]
-			}
-		],
-		planned: [
+			},
 			{
 				id: 'gr20',
 				name: 'GR20',
 				year: 2023,
 				location: 'Korsika',
-				teaser: 'Europas härtester Fernwanderweg. Mit 3 Schulkameraden.',
-				status: 'Coming Soon'
-			},
+				image: '/images/gr20/15-hoechster-punkt.png',
+				stats: {
+					distance: '180km',
+					elevation: '10.000hm+',
+					time: '9 Tage'
+				},
+				story: `Ursprünglich wollten wir die Alpenüberquerung machen. Eines Nachmittags saßen wir bei mir im Garten um zu planen. Kurzer Anruf bei einer der Hütten: Selbst ein Vierteljahr vorher buchen funktioniert nicht. Alles ausgebucht. Internetrecherche ergab dann den GR20.
+
+Hinflug über München wo wir 3h bei der Tante von einem Schulkamerad geschlafen haben. Dann bei 30°C Hitze in Korsika angekommen. 4h an einer Bushaltestelle in der Sonne gegammelt bis ein Bus kam. Noch ein wenig Zeit am Meer und Pool verbracht, ehe eines Morgens um 5:15 Uhr der Wecker klingelte.
+
+Taxi zum offiziellen Start und dann gings los. 9 Tage heftige Etappen und immer im Zelt gepennt, bei Wind und Wetter. Verrückte Kletterpassagen, Distanzen die einem den Atem rauben. Internet nur wenn man das Meer gesehen hat. Mit 16kg Rucksäcken – Zelt, Isomatte, Essen, Gaskocher, Topf und was man noch so brauchte.
+
+Dann kamen wir an unserem Ziel an. Danach haben wir uns ein fancy Airbnb geholt – wohlgemerkt mit unseren überhitzenden Handys, die gleichzeitig versuchten die eigene Buchung zu canceln (weil unter 18) und im Call mit Papa neu zu buchen. An Powerbank hängend. Traum.
+
+Das Airbnb war krass. Haben die 5kg die wir abgenommen haben über den Trip wieder reingeholt, weil wir uns so vollgehauen haben. Richtiger fetter Kontrast. Immer mal Strandurlaub zwischendurch.
+
+Dann zum Abschluss der Heimflug. Erster Flug hatte Verspätung – und das war der letzte an dem Abend. Eine Nacht in Frankfurt gepennt, nachdem jeder nach einer von der Airline finanzierten 50€ McDonalds Session (der einzige Laden der noch auf hatte) im zweiten Hotel (das erste war voll) ein eigenes Zimmer bekommen hat. Erstmal die heißeste Badewanne die man sich ausdenken kann eingelassen. Nächster Tag früh los, leerer Flieger. Heading Home.`,
+				tags: ['Trekking', 'Korsika', 'Camping', 'Bergsteigen'],
+				gallery: [
+					{ url: '/images/gr20/01-airport-ber.png', caption: 'Start am BER' },
+					{ url: '/images/gr20/02-ankunft-korsika.png', caption: '30°C – Willkommen in Korsika' },
+					{ url: '/images/gr20/03-warten-bus.png', caption: '4h in der Sonne auf den Bus gewartet' },
+					{ url: '/images/gr20/04-strand-gammeln.png', caption: 'Noch ein wenig Meer genießen' },
+					{ url: '/images/gr20/05-stoecke-kaufen.png', caption: 'Wichtige Entscheidung: Stöcke kaufen' },
+					{ url: '/images/gr20/06-fruehstueck.png', caption: '5:30 Uhr Frühstück' },
+					{ url: '/images/gr20/07-start.png', caption: 'Start der Tour' },
+					{ url: '/images/gr20/08-erster-view.png', caption: 'Erster View (schon mit Blase)' },
+					{ url: '/images/gr20/09-wlan-aussicht.png', caption: 'Aussicht aufs Meer = WLAN' },
+					{ url: '/images/gr20/10-erster-zeltplatz.png', caption: 'Erster Zeltplatz' },
+					{ url: '/images/gr20/11-view.png', caption: 'Views die einem den Atem rauben' },
+					{ url: '/images/gr20/12-naechster-morgen.png', caption: 'Nächster Morgen, kein Bock mehr' },
+					{ url: '/images/gr20/13-view-2.png', caption: 'Aber es geht weiter' },
+					{ url: '/images/gr20/14-view-3.png', caption: 'Und weiter' },
+					{ url: '/images/gr20/15-hoechster-punkt.png', caption: 'Gruppe am höchsten Punkt der Route' },
+					{ url: '/images/gr20/16-view-5.png', caption: 'Noch mehr Views' },
+					{ url: '/images/gr20/17-sprung-wasser.png', caption: 'Sprung ins Wasser' },
+					{ url: '/images/gr20/18-sprung-wasser-2.png', caption: 'Noch ein Sprung' },
+					{ url: '/images/gr20/19-sonnenbrand-summit.png', caption: 'Sonnenbrand am Summit' },
+					{ url: '/images/gr20/20-schuh-problem.png', caption: 'Schuh macht Probleme' },
+					{ url: '/images/gr20/21-view-5.png', caption: 'Mehr Views' },
+					{ url: '/images/gr20/22-wasser.png', caption: 'Kristallklares Wasser' },
+					{ url: '/images/gr20/23-geilster-badespot.png', caption: 'Geilster Badespot' },
+					{ url: '/images/gr20/24-sonnenuntergang.png', caption: 'Sonnenuntergang in den Bergen' },
+					{ url: '/images/gr20/25-airbnb-strandtag.png', caption: 'Airbnb Strandtag nach dem Trek' },
+					{ url: '/images/gr20/26-mittelmeer-1.png', caption: 'Mittelmeer genießen' },
+					{ url: '/images/gr20/27-mittelmeer-2.png', caption: 'Entspannung pur' },
+					{ url: '/images/gr20/28-mittelmeer-3.png', caption: 'Beach vibes' },
+					{ url: '/images/gr20/29-mcdonalds.png', caption: '50€ McDonalds Session in Frankfurt' },
+					{ url: '/images/gr20/30-badewanne.png', caption: 'Heißeste Badewanne ever' },
+					{ url: '/images/gr20/31-flug-home.png', caption: 'Flug nach Hause' }
+				]
+			}
+		],
+		planned: [
 			{
 				id: 'alpencross',
 				name: 'Alpenüberquerung',
@@ -500,8 +549,57 @@ That was the short version. Maybe a film in 2026.`,
 				name: 'GR20',
 				year: 2023,
 				location: 'Corsica',
-				teaser: 'Europe\'s toughest long-distance trail. With 3 school friends.',
-				status: 'Coming Soon'
+				image: '/images/gr20/15-hoechster-punkt.png',
+				stats: {
+					distance: '180km',
+					elevation: '10,000m+',
+					time: '9 days'
+				},
+				story: `Originally wanted to do the Alps crossing. One afternoon we sat in my garden planning. Quick call to one of the huts: Booking even three months ahead doesn't work. Everything fully booked. Internet research led us to the GR20.
+
+Flight via Munich where we slept 3 hours at a schoolmate's aunt's place. Then arrived in Corsica at 30°C heat. Spent 4 hours at a bus stop in the sun until a bus came. Enjoyed some time at the sea and pool before the alarm rang at 5:15 AM one morning.
+
+Taxi to the official start and off we went. 9 days of tough stages, always sleeping in the tent, through wind and weather. Crazy climbing passages, distances that take your breath away. Internet only when you could see the sea. With 16kg backpacks – tent, sleeping pad, food, gas stove, pot and everything else you need.
+
+Then we arrived at our destination. After that we got a fancy Airbnb – mind you with our overheating phones, which were simultaneously trying to cancel their own booking (because under 18) and rebook via call with Dad. Hanging on powerbanks. Dream.
+
+The Airbnb was insane. Gained back the 5kg we lost on the trip because we ate so much. Real contrast. Beach vacation in between.
+
+Then finally the flight home. First flight was delayed – and it was the last one that evening. Spent a night in Frankfurt after everyone got their own room in the second hotel (first one was full) after an airline-sponsored 50€ McDonalds session (the only place still open). First thing: hottest bath you can imagine. Next day early departure, empty plane. Heading Home.`,
+				tags: ['Trekking', 'Corsica', 'Camping', 'Mountaineering'],
+				gallery: [
+					{ url: '/images/gr20/01-airport-ber.png', caption: 'Start at BER' },
+					{ url: '/images/gr20/02-ankunft-korsika.png', caption: '30°C – Welcome to Corsica' },
+					{ url: '/images/gr20/03-warten-bus.png', caption: 'Waited 4h in the sun for the bus' },
+					{ url: '/images/gr20/04-strand-gammeln.png', caption: 'Enjoying the sea a bit more' },
+					{ url: '/images/gr20/05-stoecke-kaufen.png', caption: 'Important decision: buying poles' },
+					{ url: '/images/gr20/06-fruehstueck.png', caption: '5:30 AM breakfast' },
+					{ url: '/images/gr20/07-start.png', caption: 'Start of the tour' },
+					{ url: '/images/gr20/08-erster-view.png', caption: 'First view (already with blisters)' },
+					{ url: '/images/gr20/09-wlan-aussicht.png', caption: 'Sea view = WiFi' },
+					{ url: '/images/gr20/10-erster-zeltplatz.png', caption: 'First campsite' },
+					{ url: '/images/gr20/11-view.png', caption: 'Breathtaking views' },
+					{ url: '/images/gr20/12-naechster-morgen.png', caption: 'Next morning, no more motivation' },
+					{ url: '/images/gr20/13-view-2.png', caption: 'But we keep going' },
+					{ url: '/images/gr20/14-view-3.png', caption: 'And going' },
+					{ url: '/images/gr20/15-hoechster-punkt.png', caption: 'Group at the highest point' },
+					{ url: '/images/gr20/16-view-5.png', caption: 'Even more views' },
+					{ url: '/images/gr20/17-sprung-wasser.png', caption: 'Jump into the water' },
+					{ url: '/images/gr20/18-sprung-wasser-2.png', caption: 'Another jump' },
+					{ url: '/images/gr20/19-sonnenbrand-summit.png', caption: 'Sunburn at the summit' },
+					{ url: '/images/gr20/20-schuh-problem.png', caption: 'Shoe causing problems' },
+					{ url: '/images/gr20/21-view-5.png', caption: 'More views' },
+					{ url: '/images/gr20/22-wasser.png', caption: 'Crystal clear water' },
+					{ url: '/images/gr20/23-geilster-badespot.png', caption: 'Best swimming spot' },
+					{ url: '/images/gr20/24-sonnenuntergang.png', caption: 'Mountain sunset' },
+					{ url: '/images/gr20/25-airbnb-strandtag.png', caption: 'Airbnb beach day after the trek' },
+					{ url: '/images/gr20/26-mittelmeer-1.png', caption: 'Enjoying the Mediterranean' },
+					{ url: '/images/gr20/27-mittelmeer-2.png', caption: 'Pure relaxation' },
+					{ url: '/images/gr20/28-mittelmeer-3.png', caption: 'Beach vibes' },
+					{ url: '/images/gr20/29-mcdonalds.png', caption: '50€ McDonalds session in Frankfurt' },
+					{ url: '/images/gr20/30-badewanne.png', caption: 'Hottest bath ever' },
+					{ url: '/images/gr20/31-flug-home.png', caption: 'Flight home' }
+				]
 			},
 			{
 				id: 'alpencross',
