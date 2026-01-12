@@ -7,8 +7,8 @@ import type { Language } from '$lib/stores/language';
 export const translations = {
 	de: {
 		meta: {
-			title: 'Aaron Pfützner - Ideen → Realität',
-			description: 'Ich übersetze. AI baut. Manifestor, Musiker, Athlet.'
+			title: 'Aaron Pfützner - Portfolio',
+			description: 'Software-Projekte, Musik, Reisen & mehr. Ein digitales Logbuch.'
 		},
 		hero: {
 			quickLinks: 'Schnelllinks',
@@ -17,10 +17,10 @@ export const translations = {
 			scroll: 'Scroll'
 		},
 		manifestorMethod: {
-			sectionLabel: 'The Manifestor Method',
-			tagline: 'Impulse → AI-gestützte Realität',
-			description: 'Ich habe als Manifestor eigenständig Impulse und Ideen. Diese setze ich gezielt mit AI um – von Konzept bis zur funktionierenden Realität.',
-			philosophy: 'Nicht auf Kunden warten. Selbst kreieren. Mit AI schneller machen.',
+			sectionLabel: 'Wie ich arbeite',
+			tagline: 'Ideen → Prototypen → Realität',
+			description: 'Ich baue Dinge, die mich interessieren. Mit AI als Werkzeug entstehen funktionierende Prototypen – von der ersten Idee bis zum fertigen Produkt.',
+			philosophy: 'Eigene Projekte. Eigene Lösungen. Schneller mit AI.',
 			tools: 'Werkzeuge',
 			origin: 'Eigene Vision',
 			features: 'Features'
@@ -52,14 +52,14 @@ export const translations = {
 			tagline: 'Hobbies & Leidenschaften'
 		},
 		footer: {
-			description: 'Manifestor. Builder. Läufer. Musiker.',
+			description: 'Builder. Läufer. Musiker.',
 			rights: 'Alle Rechte vorbehalten.'
 		}
 	},
 	en: {
 		meta: {
-			title: 'Aaron Pfützner - Ideas → Reality',
-			description: 'I translate. AI builds. Manifestor, Musician, Athlete.'
+			title: 'Aaron Pfützner - Portfolio',
+			description: 'Software projects, music, travel & more. A digital logbook.'
 		},
 		hero: {
 			quickLinks: 'Quick Links',
@@ -68,10 +68,10 @@ export const translations = {
 			scroll: 'Scroll'
 		},
 		manifestorMethod: {
-			sectionLabel: 'The Manifestor Method',
-			tagline: 'Impulses → AI-Powered Reality',
-			description: 'As a Manifestor, I independently have impulses and ideas. I implement them strategically with AI – from concept to working reality.',
-			philosophy: "Don't wait for clients. Create yourself. Make it faster with AI.",
+			sectionLabel: 'How I Work',
+			tagline: 'Ideas → Prototypes → Reality',
+			description: 'I build things that interest me. With AI as a tool, working prototypes emerge – from first idea to finished product.',
+			philosophy: 'Own projects. Own solutions. Faster with AI.',
 			tools: 'Tools',
 			origin: 'Own Vision',
 			features: 'Features'
@@ -103,7 +103,7 @@ export const translations = {
 			tagline: 'Hobbies & Passions'
 		},
 		footer: {
-			description: 'Manifestor. Builder. Runner. Musician.',
+			description: 'Builder. Runner. Musician.',
 			rights: 'All rights reserved.'
 		}
 	}

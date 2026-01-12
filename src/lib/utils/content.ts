@@ -28,7 +28,7 @@ export const manifestorMethodContent = {
 				description:
 					'The Execution Layer for Travel. Die Lücke zwischen AI-Fantasie und buchbarer Realität schließen.',
 				longDescription:
-					'Ich wollte viele Reiseideen vergleichen, aber für einen guten Gesamtpreis musste man jede Option komplett durchplanen und kohärent machen. Das dauerte ewig. AI hilft, kann aber nicht 100% sagen, ob es funktioniert – die Daten stimmen oft nicht mehr. MustSeen löst das: Es transformiert unstrukturierte Reisepläne in validierte, buchbare Itinerare mit Live-Daten.',
+					'Reiseideen zu vergleichen ist schwierig: Für einen guten Gesamtpreis muss man jede Option durchplanen und validieren. Das dauert ewig. AI hilft, kann aber nicht garantieren, ob es funktioniert – die Daten sind oft veraltet. MustSeen löst das: Es transformiert unstrukturierte Reisepläne in validierte, buchbare Itinerare mit Live-Daten.',
 				problem: 'Reiseideen vergleichen war unmöglich ohne jede Option manuell durchzuplanen. AI-Vorschläge klingen toll, sind aber oft logistisch unmöglich.',
 				solution: 'Ein System, das natürliche Sprache parst, Reiseintent extrahiert, gegen Live-APIs validiert und nur buchbare Trips zeigt.',
 				features: [
@@ -49,7 +49,7 @@ export const manifestorMethodContent = {
 				statusColor: 'green',
 				description: 'AI-gestützte spirituelle Begleitung mit echten Bibelversen.',
 				longDescription:
-					'Kein gewöhnlicher Chatbot. Bevor die AI antwortet, durchsucht eine Vektordatenbank relevante Bibelverse. Diese werden dann an die AI weitergegeben – so sind die Antworten in der Bibel verwurzelt, nicht in beliebigem Internet-Content.',
+					'Ein Chatbot mit biblischer Grundlage. Bevor die AI antwortet, durchsucht eine Vektordatenbank relevante Bibelverse. Diese werden dann als Kontext weitergegeben – so sind die Antworten in der Bibel verwurzelt, nicht in beliebigem Internet-Content.',
 				problem: 'Normale AI-Chatbots geben generische spirituelle Ratschläge ohne biblische Grundlage.',
 				solution: 'Vektordatenbank-Suche findet erst passende Bibelverse, die dann als Kontext an die AI gehen.',
 				features: [
@@ -75,7 +75,7 @@ export const manifestorMethodContent = {
 				description:
 					'The Execution Layer for Travel. Bridging the gap between AI fantasy and bookable reality.',
 				longDescription:
-					'I wanted to compare many travel ideas, but for a good total price, you had to plan each option completely and make it coherent. That took forever. AI helps, but can\'t say 100% if it works – the data is often outdated. MustSeen solves this: It transforms unstructured travel plans into validated, bookable itineraries with live data.',
+					'Comparing travel ideas is difficult: for a good total price, you need to fully plan and validate each option. That takes forever. AI helps, but can\'t guarantee if it works – the data is often outdated. MustSeen solves this: It transforms unstructured travel plans into validated, bookable itineraries with live data.',
 				problem: 'Comparing travel ideas was impossible without manually planning each option. AI suggestions sound great but are often logistically impossible.',
 				solution: 'A system that parses natural language, extracts travel intent, validates against live APIs, and only shows bookable trips.',
 				features: [
@@ -96,7 +96,7 @@ export const manifestorMethodContent = {
 				statusColor: 'green',
 				description: 'AI-powered spiritual guidance with real Bible verses.',
 				longDescription:
-					'Not your ordinary chatbot. Before the AI responds, a vector database searches for relevant Bible verses. These are then passed to the AI – so responses are rooted in Scripture, not random internet content.',
+					'A chatbot with biblical foundation. Before the AI responds, a vector database searches for relevant Bible verses. These are then passed as context – so responses are rooted in Scripture, not random internet content.',
 				problem: 'Normal AI chatbots give generic spiritual advice without biblical foundation.',
 				solution: 'Vector database search finds matching Bible verses first, which then go as context to the AI.',
 				features: [
@@ -350,13 +350,13 @@ export const expeditionenContent = {
 					team: '2 Läufer + 1 Radbegleitung',
 					training: '20 Leute Community'
 				},
-				story: `Sah auf YouTube jemanden der mehrere Marathons in einer Woche lief. Dachte: Kann ich auch.
+				story: `YouTube-Video gesehen: Jemand läuft mehrere Marathons in einer Woche. Dachte: Das geht.
 
-Flyer erstellt, WhatsApp-Community gegründet – in der Spitze 20 Leute. Gemeinsam trainiert, Trainingsplan durchgezogen. Mein Highlight: Wache auf, 2 Blöcke Schulausfall. Dachte mir: Okay, dann lauf ich jetzt 30km. 6x die gleiche 5km-Runde, jedes Mal die Pferde gegrüßt. In 3 Stunden. Sehr stark.
+Flyer erstellt, WhatsApp-Community gegründet – in der Spitze 20 Leute. Gemeinsam trainiert. Ein Highlight: Schulausfall wegen Blöcken. Stattdessen spontan 30km gelaufen. 6x die gleiche 5km-Runde, immer die Pferde gegrüßt. 3 Stunden. Gut.
 
-Am Termintag war ich krank – verschoben. Am Ende zu zweit gelaufen plus Philipp mit dem Rad. Apple Watch musste mehrfach an die Powerbank, wir sind falsch gelaufen und mussten umdrehen, und Philipp hat sein Rad jede verdammte Treppe hochgetragen.
+Am Termin krank – verschoben. Dann zu zweit plus Philipp mit dem Rad. Apple Watch musste mehrfach an die Powerbank, falsch gelaufen, umgedreht. Philipp hat sein Rad jede verdammte Treppe hochgetragen.
 
-Als wir ankamen war ich so happy, dass ich es jedem Stranger erzählen musste. Ein Opa kam aus dem Wasser – meinte er trainiert gerade für den IronMan.`,
+Als wir ankamen, musste das jedem Stranger erzählt werden. Ein Opa kam aus dem Wasser – trainiert gerade für den IronMan.`,
 				tags: ['Laufen', 'Community', 'DIY', 'Durchhalten']
 			},
 			{
@@ -488,13 +488,13 @@ Dann zum Abschluss der Heimflug. Erster Flug hatte Verspätung – und das war d
 					team: '2 runners + 1 bike support',
 					training: '20 people community'
 				},
-				story: `Saw someone on YouTube who ran multiple marathons in one week. Thought: I can do that too.
+				story: `Saw someone on YouTube who ran multiple marathons in one week. Thought: That's doable.
 
-Created flyers, started a WhatsApp community – peaked at 20 people. Trained together, followed a training plan. My highlight: Woke up, saw I had 2 blocks of school cancelled. Thought: Okay, I'll run 30km now. 6x the same 5km loop, greeted the horses every time. In 3 hours. Very strong.
+Created flyers, started a WhatsApp community – peaked at 20 people. Trained together. One highlight: School cancelled due to blocks. Instead spontaneously ran 30km. 6x the same 5km loop, greeted the horses every time. 3 hours. Good.
 
-On race day I was sick – postponed. In the end, ran it with one friend plus Philipp on his bike. Apple Watch needed charging multiple times, we took wrong turns and had to backtrack, and Philipp carried his bike up every damn staircase.
+On race day sick – postponed. Then ran with one friend plus Philipp on his bike. Apple Watch needed charging multiple times, took wrong turns, had to backtrack. Philipp carried his bike up every damn staircase.
 
-When we finished I was so happy I had to tell every stranger. An old man came out of the lake – said he was training for an IronMan.`,
+When we finished, had to tell every stranger. An old man came out of the lake – training for an IronMan.`,
 				tags: ['Running', 'Community', 'DIY', 'Perseverance']
 			},
 			{

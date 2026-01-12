@@ -103,44 +103,44 @@
 
 	const content = $derived({
 		de: {
-			sectionLabel: 'Über mich',
-			tagline: 'Licht in der Finsternis',
-			story: `Aufgewachsen in Potsdam und Teltow, habe ich früh gelernt, dass die besten Abenteuer draußen passieren – Buden bauen, Bäume erklettern, die Welt entdecken. Diese Neugier ist geblieben.
+			sectionLabel: 'Hintergrund',
+			tagline: 'Musik, Code & Glaube',
+			story: `Aufgewachsen in Potsdam und Teltow – Buden bauen, Bäume erklettern, draußen sein. Diese Neugier für neue Erfahrungen ist geblieben.
 
-Mit 6 Jahren begann ich Klavier zu spielen, mit 8 kam die Posaune dazu. Musik wurde zu einer Sprache, die keine Worte braucht – ein Weg, Menschen Freude zu bereiten.
+Mit 6 begann das Klavierspielen, mit 8 kam die Posaune dazu. Musik ist für mich eine universelle Sprache geworden – ein Weg, mit Menschen zu verbinden.
 
-Parallel dazu fasziniert mich Technologie. Nicht als Selbstzweck, sondern als Werkzeug, um Ideen Realität werden zu lassen. Mit AI als Partner im Creation-Prozess entstehen Projekte, die vorher undenkbar waren.`,
+Technologie fasziniert mich als Werkzeug, um Ideen schnell zu testen. Mit AI entstehen Prototypen, die ich früher alleine nicht hätte bauen können.`,
 			faithTitle: 'Glaube',
-			faith: `In meiner Familie bin ich mit dem Glauben aufgewachsen – Sonntagsschule, Konfirmation, Gottesdienste. Aber die wirkliche Auseinandersetzung begann erst vor ein bis zwei Jahren.
+			faith: `Aufgewachsen mit Sonntagsschule, Konfirmation, Gottesdiensten. Die wirkliche Auseinandersetzung begann vor ein bis zwei Jahren.
 
-Ich habe angefangen, aktiv zu hinterfragen: Wie glaubwürdig ist die Bibel? Warum starb Jesus am Kreuz? Was ist Sünde eigentlich? Aktuell lese ich die Bibel von Anfang bis Ende durch.
+Seitdem stelle ich aktive Fragen: Wie glaubwürdig ist die Bibel? Warum das Kreuz? Was bedeutet Sünde wirklich? Momentan lese ich die Bibel von vorne bis hinten durch.
 
-Johannes 1:5 – "Es leuchtet in der Finsternis, und die Finsternis hat es nicht auslöschen können" – gibt mir Hoffnung. Manchmal fühle ich mich selbst wie ein Licht für andere.`,
-			missionTitle: 'Mission',
-			mission: `Menschen zum Glauben zu bringen. Anderen ein Licht zu sein. Eine glückliche Familie aufzubauen, die als Vorbild dient.
+Johannes 1:5 gibt mir Orientierung: "Es leuchtet in der Finsternis, und die Finsternis hat es nicht auslöschen können."`,
+			missionTitle: 'Was mich bewegt',
+			mission: `Authentisch handeln. Menschen inspirieren. Eine Familie aufbauen, die Halt gibt.
 
-Ich strebe danach, in meinem Handeln authentisch zu sein. Tech und Musik sind für mich keine getrennten Welten – beides sind Ausdrucksformen derselben Kreativität.`,
+Tech und Musik sind für mich zwei Ausdrucksformen derselben Kreativität – beide helfen mir, Dinge in die Welt zu bringen.`,
 			verse: '"Es leuchtet in der Finsternis, und die Finsternis hat es nicht auslöschen können."',
 			verseRef: 'Johannes 1:5'
 		},
 		en: {
-			sectionLabel: 'About Me',
-			tagline: 'Light in the Darkness',
-			story: `Growing up in Potsdam and Teltow, I learned early that the best adventures happen outside – building forts, climbing trees, discovering the world. That curiosity has stayed with me.
+			sectionLabel: 'Background',
+			tagline: 'Music, Code & Faith',
+			story: `Growing up in Potsdam and Teltow – building forts, climbing trees, being outside. That curiosity for new experiences has stayed.
 
-At 6, I started playing piano; at 8, the trombone followed. Music became a language that needs no words – a way to bring joy to people.
+At 6, piano started; at 8, the trombone followed. Music became a universal language for me – a way to connect with people.
 
-At the same time, technology fascinates me. Not as an end in itself, but as a tool to turn ideas into reality. With AI as a partner in the creation process, projects emerge that were previously unthinkable.`,
+Technology fascinates me as a tool to quickly test ideas. With AI, prototypes emerge that I couldn't have built alone before.`,
 			faithTitle: 'Faith',
-			faith: `I grew up with faith in my family – Sunday school, confirmation, church services. But the real engagement only began one or two years ago.
+			faith: `Grew up with Sunday school, confirmation, church services. The real engagement began one or two years ago.
 
-I started actively questioning: How credible is the Bible? Why did Jesus die on the cross? What actually is sin? Currently, I'm reading the Bible from start to finish.
+Since then, I've been asking active questions: How credible is the Bible? Why the cross? What does sin really mean? Currently reading the Bible front to back.
 
-John 1:5 – "The light shines in the darkness, and the darkness has not overcome it" – gives me hope. Sometimes I feel like a light for others myself.`,
-			missionTitle: 'Mission',
-			mission: `To bring people to faith. To be a light for others. To build a happy family that serves as an example.
+John 1:5 gives me orientation: "The light shines in the darkness, and the darkness has not overcome it."`,
+			missionTitle: 'What drives me',
+			mission: `Act authentically. Inspire people. Build a family that provides support.
 
-I strive to be authentic in my actions. Tech and music aren't separate worlds for me – both are expressions of the same creativity.`,
+Tech and music are two expressions of the same creativity for me – both help me bring things into the world.`,
 			verse: '"The light shines in the darkness, and the darkness has not overcome it."',
 			verseRef: 'John 1:5'
 		}

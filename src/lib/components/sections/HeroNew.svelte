@@ -236,8 +236,8 @@
 		<!-- Value Proposition with blur reveal -->
 		<p bind:this={subtitleRef} class="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto opacity-0">
 			{$language === 'de' 
-				? 'Builder. Musiker. Visionär.' 
-				: 'Builder. Musician. Visionary.'}
+				? 'Software, Musik & Expeditionen' 
+				: 'Software, Music & Expeditions'}
 		</p>
 
 		<!-- Quick Links with stagger animation -->
