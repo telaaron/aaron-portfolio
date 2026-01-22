@@ -117,7 +117,7 @@ Seitdem stelle ich aktive Fragen: Wie glaubwürdig ist die Bibel? Warum das Kreu
 
 Johannes 1:5 gibt mir Orientierung: "Es leuchtet in der Finsternis, und die Finsternis hat es nicht auslöschen können."`,
 			missionTitle: 'Was mich bewegt',
-			mission: `Authentisch handeln. Menschen inspirieren. Eine Familie aufbauen, die Halt gibt.
+			mission: `Authentisch handeln. Menschen inspirieren. Eine Familie von Gleichgesinnten aufbauen, die Halt gibt.
 
 Tech und Musik sind für mich zwei Ausdrucksformen derselben Kreativität – beide helfen mir, Dinge in die Welt zu bringen.`,
 			verse: '"Es leuchtet in der Finsternis, und die Finsternis hat es nicht auslöschen können."',

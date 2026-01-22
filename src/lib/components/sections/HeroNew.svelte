@@ -259,7 +259,7 @@
 		<!-- CTA Buttons with stagger animation -->
 		<div bind:this={ctaContainerRef} class="flex flex-wrap justify-center gap-4 mb-16">
 			<a 
-				href="#manifestor-method" 
+				href="#manifestor" 
 				class="cta-btn opacity-0 px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:from-orange-400 hover:to-amber-400 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105"
 			>
 				{translations.hero.viewProjects || 'Projekte ansehen'}
@@ -275,7 +275,7 @@
 
 	<!-- Scroll Indicator with floating animation -->
 	<div bind:this={scrollIndicatorRef} class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-		<a href="#manifestor-method" class="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-400 transition-colors">
+		<a href="#manifestor" class="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-400 transition-colors">
 			<span class="text-xs uppercase tracking-widest">{translations.hero.scroll || 'Scroll'}</span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path d="M12 5v14"/>

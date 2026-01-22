@@ -12,7 +12,7 @@ export const translations = {
 		},
 		hero: {
 			quickLinks: 'Schnelllinks',
-			viewProjects: 'Projekte ansehen',
+			viewProjects: 'Projekte',
 			contact: 'Kontakt',
 			scroll: 'Scroll'
 		},
