@@ -21,6 +21,35 @@ export const manifestorMethodContent = {
 		tools: ['Claude', 'VS Code', 'SvelteKit', 'Supabase', 'Vercel'],
 		projects: [
 			{
+				id: 'chord-trainer',
+				name: 'Chord Trainer',
+				status: 'Live v0.6.x',
+				statusColor: 'green',
+				description:
+					'Kostenlose Web-App für Jazz-Piano: Akkorde und Voicings strukturiert in allen 12 Tonarten trainieren.',
+				longDescription:
+					'Chord Trainer läuft komplett im Browser – ohne Login, ohne Installation, ohne Abo. Mit Progressions-Modi, MIDI-Feedback, Übungsplänen, Session-History und Metronom hilft die App dabei, Akkorde und Voicings systematisch zu automatisieren.',
+				features: [
+					'16 Akkordtypen & 9 Voicing-Typen',
+					'Progressions-Modi inkl. ii–V–I, Quartenzirkel und Custom Progressions',
+					'Web MIDI Live-Feedback mit Accuracy-Score',
+					'Progress-Tracking mit Streaks & Session-History'
+				],
+				tech: [
+					'SvelteKit 2',
+					'Svelte 5',
+					'Tailwind CSS 4',
+					'TypeScript 5',
+					'Tone.js',
+					'Web MIDI API'
+				],
+				link: 'https://github.com/telaaron/piano-chord-trainer',
+				image: '/images/chord-trainer-og.webp',
+				logo: '/images/chord-trainer-logo-full.webp',
+				liveLink: 'https://jazzchords.app',
+				liveLinkText: 'Zur App'
+			},
+			{
 				id: 'mustseen',
 				name: 'MustSeen',
 				status: 'Phase 2 – In Entwicklung',
@@ -29,8 +58,10 @@ export const manifestorMethodContent = {
 					'The Execution Layer for Travel. Die Lücke zwischen AI-Fantasie und buchbarer Realität schließen.',
 				longDescription:
 					'Reiseideen zu vergleichen ist schwierig: Für einen guten Gesamtpreis muss man jede Option durchplanen und validieren. Das dauert ewig. AI hilft, kann aber nicht garantieren, ob es funktioniert – die Daten sind oft veraltet. MustSeen löst das: Es transformiert unstrukturierte Reisepläne in validierte, buchbare Itinerare mit Live-Daten.',
-				problem: 'Reiseideen vergleichen war unmöglich ohne jede Option manuell durchzuplanen. AI-Vorschläge klingen toll, sind aber oft logistisch unmöglich.',
-				solution: 'Ein System, das natürliche Sprache parst, Reiseintent extrahiert, gegen Live-APIs validiert und nur buchbare Trips zeigt.',
+				problem:
+					'Reiseideen vergleichen war unmöglich ohne jede Option manuell durchzuplanen. AI-Vorschläge klingen toll, sind aber oft logistisch unmöglich.',
+				solution:
+					'Ein System, das natürliche Sprache parst, Reiseintent extrahiert, gegen Live-APIs validiert und nur buchbare Trips zeigt.',
 				features: [
 					'Natural Language Travel Intent Parsing',
 					'Multi-dimensionale Validierung (Zeit, Ort, Budget, Logik)',
@@ -40,7 +71,9 @@ export const manifestorMethodContent = {
 				tech: ['SvelteKit', 'Supabase', 'TypeScript', 'Claude API'],
 				link: 'https://github.com/telaaron/mustseen-bridge-engine',
 				image: '/images/mustseen-mockup-minimal.png',
-				logo: '/images/mustseen-logo.svg'
+				logo: '/images/mustseen-logo.svg',
+				liveLink: 'https://must-seen.com',
+				liveLinkText: 'Zur App'
 			},
 			{
 				id: 'spiritual-companion',
@@ -50,8 +83,10 @@ export const manifestorMethodContent = {
 				description: 'AI-gestützte spirituelle Begleitung mit echten Bibelversen.',
 				longDescription:
 					'Ein Chatbot mit biblischer Grundlage. Bevor die AI antwortet, durchsucht eine Vektordatenbank relevante Bibelverse. Diese werden dann als Kontext weitergegeben – so sind die Antworten in der Bibel verwurzelt, nicht in beliebigem Internet-Content.',
-				problem: 'Normale AI-Chatbots geben generische spirituelle Ratschläge ohne biblische Grundlage.',
-				solution: 'Vektordatenbank-Suche findet erst passende Bibelverse, die dann als Kontext an die AI gehen.',
+				problem:
+					'Normale AI-Chatbots geben generische spirituelle Ratschläge ohne biblische Grundlage.',
+				solution:
+					'Vektordatenbank-Suche findet erst passende Bibelverse, die dann als Kontext an die AI gehen.',
 				features: [
 					'Bibelvers-Suche via Vektordatenbank',
 					'Kontextbasierte AI-Antworten',
@@ -68,6 +103,35 @@ export const manifestorMethodContent = {
 		tools: ['Claude', 'VS Code', 'SvelteKit', 'Supabase', 'Vercel'],
 		projects: [
 			{
+				id: 'chord-trainer',
+				name: 'Chord Trainer',
+				status: 'Live v0.6.x',
+				statusColor: 'green',
+				description:
+					'Free web app for jazz piano: train chords and voicings in all 12 keys with structured practice.',
+				longDescription:
+					'Chord Trainer runs fully in the browser — no login, no install, no subscription. With progression modes, MIDI feedback, practice plans, session history, and a metronome, it helps automate chord and voicing muscle memory.',
+				features: [
+					'16 chord types & 9 voicing types',
+					'Progression modes incl. ii–V–I, circle of fifths, and custom progressions',
+					'Web MIDI live feedback with accuracy score',
+					'Progress tracking with streaks & session history'
+				],
+				tech: [
+					'SvelteKit 2',
+					'Svelte 5',
+					'Tailwind CSS 4',
+					'TypeScript 5',
+					'Tone.js',
+					'Web MIDI API'
+				],
+				link: 'https://github.com/telaaron/piano-chord-trainer',
+				image: '/images/chord-trainer-og.webp',
+				logo: '/images/chord-trainer-logo-full.webp',
+				liveLink: 'https://jazzchords.app',
+				liveLinkText: 'Live App'
+			},
+			{
 				id: 'mustseen',
 				name: 'MustSeen',
 				status: 'Phase 2 – In Development',
@@ -75,9 +139,11 @@ export const manifestorMethodContent = {
 				description:
 					'The Execution Layer for Travel. Bridging the gap between AI fantasy and bookable reality.',
 				longDescription:
-					'Comparing travel ideas is difficult: for a good total price, you need to fully plan and validate each option. That takes forever. AI helps, but can\'t guarantee if it works – the data is often outdated. MustSeen solves this: It transforms unstructured travel plans into validated, bookable itineraries with live data.',
-				problem: 'Comparing travel ideas was impossible without manually planning each option. AI suggestions sound great but are often logistically impossible.',
-				solution: 'A system that parses natural language, extracts travel intent, validates against live APIs, and only shows bookable trips.',
+					"Comparing travel ideas is difficult: for a good total price, you need to fully plan and validate each option. That takes forever. AI helps, but can't guarantee if it works – the data is often outdated. MustSeen solves this: It transforms unstructured travel plans into validated, bookable itineraries with live data.",
+				problem:
+					'Comparing travel ideas was impossible without manually planning each option. AI suggestions sound great but are often logistically impossible.',
+				solution:
+					'A system that parses natural language, extracts travel intent, validates against live APIs, and only shows bookable trips.',
 				features: [
 					'Natural Language Travel Intent Parsing',
 					'Multi-dimensional Validation (Time, Location, Budget, Logic)',
@@ -87,7 +153,9 @@ export const manifestorMethodContent = {
 				tech: ['SvelteKit', 'Supabase', 'TypeScript', 'Claude API'],
 				link: 'https://github.com/telaaron/mustseen-bridge-engine',
 				image: '/images/mustseen-mockup-minimal.png',
-				logo: '/images/mustseen-logo.svg'
+				logo: '/images/mustseen-logo.svg',
+				liveLink: 'https://must-seen.com',
+				liveLinkText: 'Live App'
 			},
 			{
 				id: 'spiritual-companion',
@@ -98,7 +166,8 @@ export const manifestorMethodContent = {
 				longDescription:
 					'A chatbot with biblical foundation. Before the AI responds, a vector database searches for relevant Bible verses. These are then passed as context – so responses are rooted in Scripture, not random internet content.',
 				problem: 'Normal AI chatbots give generic spiritual advice without biblical foundation.',
-				solution: 'Vector database search finds matching Bible verses first, which then go as context to the AI.',
+				solution:
+					'Vector database search finds matching Bible verses first, which then go as context to the AI.',
 				features: [
 					'Bible verse search via vector database',
 					'Context-based AI responses',
@@ -257,7 +326,9 @@ export const bewegungContent = {
 					'Weighted Push-Ups',
 					'Progressive Overload Focus'
 				],
-				frequency: '4x/Woche'
+				frequency: '4x/Woche',
+				image: '/images/calisthenics.webp',
+				imageStyle: 'portrait-feature'
 			},
 			{
 				id: 'wimhof',
@@ -266,11 +337,12 @@ export const bewegungContent = {
 				description: 'Kälte-Mindset & Atemtechnik',
 				details: [
 					'Eisbaden im Schlachtensee',
+					'ARD-Dreh beim Eisbaden mit mehreren Teilnehmern',
 					'Kalte Duschen am Morgen',
 					'Stress-Resistenz aufbauen'
 				],
 				frequency: '2-3x/Woche',
-				image: '/images/bewegung/eisbaden.jpg'
+				image: '/images/eisbaden-ard.webp'
 			},
 			{
 				id: 'running',
@@ -301,7 +373,9 @@ export const bewegungContent = {
 					'Weighted Push-Ups',
 					'Progressive Overload Focus'
 				],
-				frequency: '4x/week'
+				frequency: '4x/week',
+				image: '/images/calisthenics.webp',
+				imageStyle: 'portrait-feature'
 			},
 			{
 				id: 'wimhof',
@@ -310,6 +384,7 @@ export const bewegungContent = {
 				description: 'Cold Mindset & Breathing Technique',
 				details: [
 					'Ice Bathing in Schlachtensee',
+					'Filmed by ARD during an ice bathing session with multiple participants',
 					'3-4 Breathing Rounds Daily',
 					'Cold Showers in the Morning',
 					'Mental Strength & Focus',
@@ -317,7 +392,7 @@ export const bewegungContent = {
 					'Build Stress Resistance'
 				],
 				frequency: '2-3x/week',
-				image: '/images/bewegung/eisbaden.jpg'
+				image: '/images/eisbaden-ard.webp'
 			},
 			{
 				id: 'running',
@@ -430,19 +505,31 @@ Dann zum Abschluss der Heimflug. Erster Flug hatte Verspätung – und das war d
 				gallery: [
 					{ url: '/images/gr20/01-airport-ber.png', caption: 'Start am BER' },
 					{ url: '/images/gr20/02-ankunft-korsika.png', caption: '30°C – Willkommen in Korsika' },
-					{ url: '/images/gr20/03-warten-bus.png', caption: '4h in der Sonne auf den Bus gewartet' },
+					{
+						url: '/images/gr20/03-warten-bus.png',
+						caption: '4h in der Sonne auf den Bus gewartet'
+					},
 					{ url: '/images/gr20/04-strand-gammeln.png', caption: 'Noch ein wenig Meer genießen' },
-					{ url: '/images/gr20/05-stoecke-kaufen.png', caption: 'Wichtige Entscheidung: Stöcke kaufen' },
+					{
+						url: '/images/gr20/05-stoecke-kaufen.png',
+						caption: 'Wichtige Entscheidung: Stöcke kaufen'
+					},
 					{ url: '/images/gr20/06-fruehstueck.png', caption: '5:30 Uhr Frühstück' },
 					{ url: '/images/gr20/07-start.png', caption: 'Start der Tour' },
 					{ url: '/images/gr20/08-erster-view.png', caption: 'Erster View (schon mit Blase)' },
 					{ url: '/images/gr20/09-wlan-aussicht.png', caption: 'Aussicht aufs Meer = WLAN' },
 					{ url: '/images/gr20/10-erster-zeltplatz.png', caption: 'Erster Zeltplatz' },
 					{ url: '/images/gr20/11-view.png', caption: 'Views die einem den Atem rauben' },
-					{ url: '/images/gr20/12-naechster-morgen.png', caption: 'Nächster Morgen, kein Bock mehr' },
+					{
+						url: '/images/gr20/12-naechster-morgen.png',
+						caption: 'Nächster Morgen, kein Bock mehr'
+					},
 					{ url: '/images/gr20/13-view-2.png', caption: 'Aber es geht weiter' },
 					{ url: '/images/gr20/14-view-3.png', caption: 'Und weiter' },
-					{ url: '/images/gr20/15-hoechster-punkt.png', caption: 'Gruppe am höchsten Punkt der Route' },
+					{
+						url: '/images/gr20/15-hoechster-punkt.png',
+						caption: 'Gruppe am höchsten Punkt der Route'
+					},
 					{ url: '/images/gr20/16-view-5.png', caption: 'Noch mehr Views' },
 					{ url: '/images/gr20/17-sprung-wasser.png', caption: 'Sprung ins Wasser' },
 					{ url: '/images/gr20/18-sprung-wasser-2.png', caption: 'Noch ein Sprung' },
@@ -452,7 +539,10 @@ Dann zum Abschluss der Heimflug. Erster Flug hatte Verspätung – und das war d
 					{ url: '/images/gr20/22-wasser.png', caption: 'Kristallklares Wasser' },
 					{ url: '/images/gr20/23-geilster-badespot.png', caption: 'Geilster Badespot' },
 					{ url: '/images/gr20/24-sonnenuntergang.png', caption: 'Sonnenuntergang in den Bergen' },
-					{ url: '/images/gr20/25-airbnb-strandtag.png', caption: 'Airbnb Strandtag nach dem Trek' },
+					{
+						url: '/images/gr20/25-airbnb-strandtag.png',
+						caption: 'Airbnb Strandtag nach dem Trek'
+					},
 					{ url: '/images/gr20/26-mittelmeer-1.png', caption: 'Mittelmeer genießen' },
 					{ url: '/images/gr20/27-mittelmeer-2.png', caption: 'Entspannung pur' },
 					{ url: '/images/gr20/28-mittelmeer-3.png', caption: 'Beach vibes' },
@@ -526,7 +616,7 @@ That was the short version. Maybe a film in 2026.`,
 					},
 					{
 						url: '/images/BalkanGurken/69DCBC63-58B8-4EC1-B44F-23AC9734D530_1_105_c.jpeg',
-						caption: 'Climbs you couldn\'t ride anymore'
+						caption: "Climbs you couldn't ride anymore"
 					},
 					{
 						url: '/images/BalkanGurken/742006F7-DE5E-43BD-B51B-098AB5775E32_1_105_c.jpeg',
@@ -572,14 +662,20 @@ Then finally the flight home. First flight was delayed – and it was the last o
 					{ url: '/images/gr20/02-ankunft-korsika.png', caption: '30°C – Welcome to Corsica' },
 					{ url: '/images/gr20/03-warten-bus.png', caption: 'Waited 4h in the sun for the bus' },
 					{ url: '/images/gr20/04-strand-gammeln.png', caption: 'Enjoying the sea a bit more' },
-					{ url: '/images/gr20/05-stoecke-kaufen.png', caption: 'Important decision: buying poles' },
+					{
+						url: '/images/gr20/05-stoecke-kaufen.png',
+						caption: 'Important decision: buying poles'
+					},
 					{ url: '/images/gr20/06-fruehstueck.png', caption: '5:30 AM breakfast' },
 					{ url: '/images/gr20/07-start.png', caption: 'Start of the tour' },
 					{ url: '/images/gr20/08-erster-view.png', caption: 'First view (already with blisters)' },
 					{ url: '/images/gr20/09-wlan-aussicht.png', caption: 'Sea view = WiFi' },
 					{ url: '/images/gr20/10-erster-zeltplatz.png', caption: 'First campsite' },
 					{ url: '/images/gr20/11-view.png', caption: 'Breathtaking views' },
-					{ url: '/images/gr20/12-naechster-morgen.png', caption: 'Next morning, no more motivation' },
+					{
+						url: '/images/gr20/12-naechster-morgen.png',
+						caption: 'Next morning, no more motivation'
+					},
 					{ url: '/images/gr20/13-view-2.png', caption: 'But we keep going' },
 					{ url: '/images/gr20/14-view-3.png', caption: 'And going' },
 					{ url: '/images/gr20/15-hoechster-punkt.png', caption: 'Group at the highest point' },
@@ -592,7 +688,10 @@ Then finally the flight home. First flight was delayed – and it was the last o
 					{ url: '/images/gr20/22-wasser.png', caption: 'Crystal clear water' },
 					{ url: '/images/gr20/23-geilster-badespot.png', caption: 'Best swimming spot' },
 					{ url: '/images/gr20/24-sonnenuntergang.png', caption: 'Mountain sunset' },
-					{ url: '/images/gr20/25-airbnb-strandtag.png', caption: 'Airbnb beach day after the trek' },
+					{
+						url: '/images/gr20/25-airbnb-strandtag.png',
+						caption: 'Airbnb beach day after the trek'
+					},
 					{ url: '/images/gr20/26-mittelmeer-1.png', caption: 'Enjoying the Mediterranean' },
 					{ url: '/images/gr20/27-mittelmeer-2.png', caption: 'Pure relaxation' },
 					{ url: '/images/gr20/28-mittelmeer-3.png', caption: 'Beach vibes' },

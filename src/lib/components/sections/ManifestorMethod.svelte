@@ -151,10 +151,10 @@
 		</div>
 
 		<!-- Projects with 3D card reveal -->
-		<div bind:this={projectsRef} class="grid md:grid-cols-2 gap-6 md:auto-rows-fr">
+		<div bind:this={projectsRef} class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:auto-rows-fr">
 			{#each content.projects as project, i}
 				<TiltCard>
-					<div class="h-full bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors group overflow-hidden flex flex-col md:min-h-175">
+					<div class="h-full bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors group overflow-hidden flex flex-col">
 						<!-- Project Image -->
 						{#if project.image}
 							<div class="aspect-video bg-gray-800 overflow-hidden">
@@ -166,7 +166,7 @@
 							</div>
 						{/if}
 						
-						<div class="p-6 md:p-8 flex flex-col flex-1">
+						<div class="p-6 flex flex-col flex-1">
 							<!-- Status badge -->
 							<div class="flex items-center justify-between mb-4">
 								<span class="text-xs font-mono uppercase tracking-widest text-orange-400">{translations.manifestorMethod.origin}</span>
@@ -219,10 +219,18 @@
 							</div>
 
 							<!-- Link -->
-							<a href={project.link} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-orange-400 hover:underline">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-								GitHub
-							</a>
+							<div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+								<a href={project.link} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-orange-400 hover:underline">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+									GitHub
+								</a>
+								{#if project.liveLink}
+									<a href={project.liveLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-orange-400 hover:underline">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+										{project.liveLinkText ?? 'Live'}
+									</a>
+								{/if}
+							</div>
 						</div>
 					</div>
 				</TiltCard>

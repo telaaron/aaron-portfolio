@@ -3,11 +3,11 @@
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/utils/translations';
 	import { onMount } from 'svelte';
-	import { 
+	import {
 		sectionTitleReveal,
 		perspectiveEntrance,
 		ensureGSAP,
-		cleanupScrollTriggers 
+		cleanupScrollTriggers
 	} from '$lib/utils/animations';
 
 	let translations = $derived(t($language));
@@ -21,11 +21,12 @@
 		setTimeout(async () => {
 			const { gsap, ScrollTrigger } = await ensureGSAP();
 			if (!gsap) return;
-			
+
 			// Section label
 			const label = document.querySelector('#bewegung .section-label');
 			if (label) {
-				gsap.fromTo(label,
+				gsap.fromTo(
+					label,
 					{ opacity: 0, y: 20 },
 					{
 						opacity: 1,
@@ -40,13 +41,14 @@
 					}
 				);
 			}
-			
+
 			if (titleRef) await sectionTitleReveal(titleRef);
-			
+
 			// Philosophy text
 			const philText = document.querySelector('#bewegung .philosophy-text');
 			if (philText) {
-				gsap.fromTo(philText,
+				gsap.fromTo(
+					philText,
 					{ opacity: 0, y: 25 },
 					{
 						opacity: 1,
@@ -61,11 +63,12 @@
 					}
 				);
 			}
-			
+
 			// Premium 3D perspective entrance for each card - EARLIER
 			if (cardsRef) {
 				const cards = cardsRef.querySelectorAll('.activity-card');
-				gsap.fromTo(cards,
+				gsap.fromTo(
+					cards,
 					{ opacity: 0, y: 80, rotateX: 15, transformPerspective: 1000, filter: 'blur(4px)' },
 					{
 						opacity: 1,
@@ -89,49 +92,105 @@
 	});
 </script>
 
-<section id="bewegung" class="py-24 px-4 md:px-8 bg-deep-black relative overflow-hidden">
+<section id="bewegung" class="relative overflow-hidden bg-deep-black px-4 py-24 md:px-8">
 	<!-- Gradient accent -->
-	<div class="absolute top-0 left-0 w-1/3 h-full bg-linear-to-r from-cyan-500/5 to-transparent pointer-events-none"></div>
+	<div
+		class="pointer-events-none absolute top-0 left-0 h-full w-1/3 bg-linear-to-r from-cyan-500/5 to-transparent"
+	></div>
 
-	<div class="container max-w-6xl mx-auto relative z-10">
+	<div class="relative z-10 container mx-auto max-w-6xl">
 		<!-- Section header with GSAP -->
 		<div class="mb-16">
-			<p class="section-label opacity-0 text-cyan-400 font-mono text-sm tracking-widest uppercase mb-2">{translations.bewegung.sectionLabel}</p>
-			<h2 bind:this={titleRef} class="text-4xl md:text-5xl font-bold text-white mb-4">{translations.bewegung.tagline}</h2>
-			<p class="philosophy-text opacity-0 text-gray-400">Nach dem <span class="text-cyan-400 font-mono">{translations.bewegung.philosophy}</span></p>
+			<p
+				class="section-label mb-2 font-mono text-sm tracking-widest text-cyan-400 uppercase opacity-0"
+			>
+				{translations.bewegung.sectionLabel}
+			</p>
+			<h2 bind:this={titleRef} class="mb-4 text-4xl font-bold text-white md:text-5xl">
+				{translations.bewegung.tagline}
+			</h2>
+			<p class="philosophy-text text-gray-400 opacity-0">
+				Nach dem <span class="font-mono text-cyan-400">{translations.bewegung.philosophy}</span>
+			</p>
 		</div>
 
 		<!-- Activities grid with alternating slide-in -->
-		<div bind:this={cardsRef} class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div bind:this={cardsRef} class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 			{#each content.activities as activity, i}
 				<div
-					class="activity-card opacity-0 p-6 bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-cyan-500/50 hover:bg-gray-900 transition-all duration-300 group hover:scale-[1.02]"
+					class="activity-card group rounded-2xl border border-gray-800 bg-gray-900/50 p-6 opacity-0 transition-all duration-300 hover:scale-[1.02] hover:border-cyan-500/50 hover:bg-gray-900"
 				>
 					<!-- Header -->
-					<div class="flex items-start justify-between mb-4">
-						<span class="text-4xl group-hover:scale-110 transition-transform duration-300">{activity.icon}</span>
-						<span class="px-2 py-1 bg-gray-800 rounded text-xs text-gray-400 font-mono group-hover:bg-cyan-900/30 group-hover:text-cyan-400 transition-colors">
+					<div class="mb-4 flex items-start justify-between">
+						<span class="text-4xl transition-transform duration-300 group-hover:scale-110"
+							>{activity.icon}</span
+						>
+						<span
+							class="rounded bg-gray-800 px-2 py-1 font-mono text-xs text-gray-400 transition-colors group-hover:bg-cyan-900/30 group-hover:text-cyan-400"
+						>
 							{activity.frequency}
 						</span>
 					</div>
 
 					<!-- Title & Description -->
-					<h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">{activity.name}</h3>
-					<p class="text-gray-400 text-sm mb-4">{activity.description}</p>
+					<h3 class="mb-2 text-xl font-bold text-white transition-colors group-hover:text-cyan-300">
+						{activity.name}
+					</h3>
+					<p class="mb-4 text-sm text-gray-400">{activity.description}</p>
 
 					<!-- Image (if available) -->
 					{#if activity.image}
-						<div class="mb-4 rounded-lg overflow-hidden">
-							<img src={activity.image} alt={activity.name} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
-						</div>
+						{#if activity.imageStyle === 'portrait-feature'}
+							<div class="mb-4 overflow-hidden rounded-lg border border-cyan-900/40 bg-black/40">
+								<div class="relative h-64">
+									<img
+										src={activity.image}
+										alt=""
+										aria-hidden="true"
+										class="absolute inset-0 h-full w-full scale-115 object-cover object-center opacity-30 blur-xl"
+									/>
+									<div
+										class="absolute inset-0 bg-linear-to-r from-black/30 via-transparent to-black/30"
+									></div>
+									<div class="relative z-10 flex h-full items-center justify-center px-3">
+										<img
+											src={activity.image}
+											alt={activity.name}
+											class="h-full w-auto max-w-[78%] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+										/>
+									</div>
+								</div>
+							</div>
+						{:else}
+							<div class="mb-4 overflow-hidden rounded-lg border border-gray-800/60 bg-gray-900/60">
+								<div class="relative h-48">
+									<img
+										src={activity.image}
+										alt=""
+										aria-hidden="true"
+										class="absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-md"
+									/>
+									<div
+										class="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/20"
+									></div>
+									<img
+										src={activity.image}
+										alt={activity.name}
+										class="relative z-10 h-full w-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.02]"
+									/>
+								</div>
+							</div>
+						{/if}
 					{/if}
 
 					<!-- Details -->
 					{#if activity.details}
-						<div class="space-y-2 pt-4 border-t border-gray-800">
+						<div class="space-y-2 border-t border-gray-800 pt-4">
 							{#each activity.details as detail}
 								<div class="flex items-center gap-2 text-sm">
-									<span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:scale-125 transition-transform"></span>
+									<span
+										class="h-1.5 w-1.5 rounded-full bg-cyan-400 transition-transform group-hover:scale-125"
+									></span>
 									<span class="text-gray-300">{detail}</span>
 								</div>
 							{/each}

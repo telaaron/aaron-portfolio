@@ -94,7 +94,7 @@
 			// Spring counter animations
 			if (stat1Ref) await springCounter(stat1Ref, 14, '+');
 			if (stat2Ref) await springCounter(stat2Ref, 3, '');
-			if (stat3Ref) await springCounter(stat3Ref, 2, '');
+			if (stat3Ref) await springCounter(stat3Ref, 3, '');
 			if (stat4Ref) await springCounter(stat4Ref, 4, '');
 		}, 100);
 
