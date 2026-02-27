@@ -550,18 +550,63 @@ Dann zum Abschluss der Heimflug. Erster Flug hatte Verspätung – und das war d
 					{ url: '/images/gr20/30-badewanne.png', caption: 'Heißeste Badewanne ever' },
 					{ url: '/images/gr20/31-flug-home.png', caption: 'Flug nach Hause' }
 				]
-			}
-		],
-		planned: [
+			},
 			{
 				id: 'alpencross',
 				name: 'Alpenüberquerung',
 				year: 2024,
-				location: 'Alpen',
-				teaser: 'Zu 11 gestartet, zu 7 angekommen.',
-				status: 'Coming Soon'
-			},
-			'Island 2025',
+				location: 'Oberstdorf → Meran',
+				image: '/images/alpencross/08-tag3-view.webp',
+				stats: {
+					distance: '~100km',
+					elevation: '~7.000hm',
+					time: '5 Tage'
+				},
+				story: `Geplant von Freunden eines anderen Gymnasiums. Die haben uns gefragt nachdem wir vom GR20 erzählt haben. Geplant zu 9. Aber 2 waren schon vor Antritt verletzt.
+
+In München bei einem der Wanderer übernachtet – die haben da eine Wohnung. Dann übermüdet den Rest von München nach Oberstdorf wo uns ein Bus wirklich an den Start gebracht hat.
+
+Lange Distanzen, schöne Natur, teure Schlafsäle, teilweise schlechtes Essen. Von Tag zu Tag geschlagen. Einmal hat es so fett geregnet dass wir klitschnass den Rest mit nem Shuttle hochgefahren sind.
+
+Nach diesem Regen hat es einen weiteren der Truppe geschmissen. Er hat sich seine Füße so wund gelaufen dass sie regelrecht auf waren und er auf Fleisch und Knochen gelaufen ist. Er ist dann von dort mit einem Zug über München nach Hause gefahren. So war der Plan. Er ist in München zusammengeklappt und wurde ins Krankenhaus gefahren.
+
+2 der Truppe meinten sie müssen den Rest auch noch laufen. Ja und sie haben es munter geschafft. Die Nacht danach war dann die schlimmste. Einer hatte sich schon die ganze Zeit schlecht gefühlt. Ein anderer hatte dann mitten in der Nacht komplett mit Spucken angefangen und mehrfach den Flur vom Schlafsaal mit seinem Ersatzt-Shirt wischen müssen.
+
+Nächsten Morgen als es nicht besser wurde: Krankenwagen gerufen. Beide dann später – nachdem wir zu 5 den Berg wieder falsche Richtung runter zum Krankenhaus gelaufen sind – dort sehr viel Zeit gewartet und gewartet. Ich hatte konstant eine positive Einstellung und gebe auch ungern auf. Manche der Gruppe haben das als Zeichen sehen wollen, final aufzugeben.
+
+Aber die 2 haben sich nach Tropf wieder berappelt und ihren Norovirus besiegt, den sie wahrscheinlich durch Trinken aus einem Bach bekommen haben. Dann noch Ötzi besucht am nächsten Tag und am finalen Ziel angekommen. Meran.
+
+Aber davor war noch eine kurze Busfahrt. Durch die Serpentinen. Sonne hat den ganzen Bus aufgeheizt. Ich war konstant kurz vorm Spucken. Dann kam noch eine Schulklasse in den Bus. Stehend im Bus gequetscht bei über 30°C Serpentinen fahren zähle ich zu den schlimmsten Grenzerfahrungen die ich je machen will.
+
+Jetzt aber: Meran – sehr warm, sehr schick, lecker Pizza. Da wurde dann ich auch nochmal krank. Schüttelfrost bei 35°C ist ein kurioses Gefühl. Wahrscheinlich Sonnenstich oder so. War auch kurze Zeit taub auf dem linken Ohr.
+
+Wir waren sehr froh es geschafft zu haben.`,
+				tags: ['Trekking', 'Alpen', 'Durchhalten', 'Chaos'],
+				gallery: [
+					{ url: '/images/alpencross/01-start-oberstdorf.webp', caption: 'Start in Oberstdorf' },
+					{ url: '/images/alpencross/02-tag1-eigenes-tempo.webp', caption: 'Jeder läuft sein Tempo – Tag 1' },
+					{ url: '/images/alpencross/03-fluss-berge.webp', caption: 'Fluss mit Bergen' },
+					{ url: '/images/alpencross/04-tag2-view.webp', caption: 'Tag 2 View' },
+					{ url: '/images/alpencross/05-schlafsaal.webp', caption: 'Schlafsaal' },
+					{ url: '/images/alpencross/06-sunset.webp', caption: 'Sunset in den Bergen' },
+					{ url: '/images/alpencross/07-geroelle-wanderweg.webp', caption: 'Gerölle und schwere Wanderwege' },
+					{ url: '/images/alpencross/08-tag3-view.webp', caption: 'View Tag 3' },
+					{ url: '/images/alpencross/09-mini-bruecke.webp', caption: 'Mini Brücke' },
+					{ url: '/images/alpencross/10-pause.webp', caption: 'Pause' },
+					{ url: '/images/alpencross/11-taxi-regen.webp', caption: 'Taxi-Fahrt nach heftigem Regen' },
+					{ url: '/images/alpencross/12-warten-krankenhaus.webp', caption: 'Warten auf die Krankenhaus-Jungs an Tag 4' },
+					{ url: '/images/alpencross/13-huette-tag5.webp', caption: 'Hütte an Tag 5' },
+					{ url: '/images/alpencross/14-natur-verbunden.webp', caption: 'Der Natur verbunden' },
+					{ url: '/images/alpencross/15-schlechtes-wetter.webp', caption: 'Letzter Tag überrascht mit schlechtem Wetter' },
+					{ url: '/images/alpencross/16-mehr-schlechtes-wetter.webp', caption: 'Noch mehr schlechtes Wetter' },
+					{ url: '/images/alpencross/17-oetzi-logbuch.webp', caption: 'Ötzi Logbuch' },
+					{ url: '/images/alpencross/18-vier-oetziwanderer.webp', caption: 'Die vier Ötzi-Wanderer' },
+					{ url: '/images/alpencross/19-beendet.webp', caption: 'Beendet – Meran erreicht' }
+				]
+			}
+		],
+		planned: [
+			'Radtour durch Deutschland',
 			'Nordkap mit dem Rad'
 		]
 	},
@@ -704,11 +749,58 @@ Then finally the flight home. First flight was delayed – and it was the last o
 				id: 'alpencross',
 				name: 'Alpine Crossing',
 				year: 2024,
-				location: 'Alps',
-				teaser: 'Started with 11, finished with 7.',
-				status: 'Coming Soon'
-			},
-			'Iceland 2025',
+				location: 'Oberstdorf → Meran',
+				image: '/images/alpencross/08-tag3-view.webp',
+				stats: {
+					distance: '~100km',
+					elevation: '~7,000m',
+					time: '5 days'
+				},
+				story: `Planned by friends from another high school. They asked us after we told them about the GR20. Planned with 9 people. But 2 were already injured before departure.
+
+Stayed overnight in Munich at one of the hikers' apartment. Then overtired from Munich to Oberstdorf where a bus took us to the actual start.
+
+Long distances, beautiful nature, expensive dorm rooms, sometimes bad food. Beaten down day by day. Once it rained so heavily that we took a shuttle up soaking wet.
+
+After this rain, another member of the crew dropped out. He had walked his feet so raw that they were literally open and he was walking on flesh and bone. He then took a train home via Munich. That was the plan. He collapsed in Munich and was taken to the hospital.
+
+2 of the crew thought they still had to walk the rest. Yeah and they made it cheerfully. The night after that was the worst. One had been feeling bad the whole time. Another started throwing up in the middle of the night and had to wipe the hallway floor multiple times with his spare shirt.
+
+Next morning when it didn't get better: ambulance called. Both later – after we walked down the mountain in the wrong direction to the hospital with 5 people – spent a lot of time waiting and waiting there. I always had a positive attitude and don't like to give up. Some in the group wanted to see this as a sign to finally give up.
+
+But the 2 recovered after IV drips and defeated their norovirus, which they probably got from drinking from a stream. Then visited Ötzi the next day and arrived at the final destination. Meran.
+
+But before that was a short bus ride. Through the serpentines. Sun had heated up the entire bus. I was constantly on the verge of throwing up. Then a school class got on the bus. Standing squeezed in the bus at over 30°C driving serpentines I count as one of the worst extreme experiences I ever want to have.
+
+But now: Meran – very warm, very chic, delicious pizza. Then I also got sick. Chills at 35°C is a curious feeling. Probably sunstroke or something. Was also deaf in my left ear for a short time.
+
+We were very happy to have made it.`,
+				tags: ['Trekking', 'Alps', 'Perseverance', 'Chaos'],
+				gallery: [
+					{ url: '/images/alpencross/01-start-oberstdorf.webp', caption: 'Start in Oberstdorf' },
+					{ url: '/images/alpencross/02-tag1-eigenes-tempo.webp', caption: 'Everyone at their own pace – Day 1' },
+					{ url: '/images/alpencross/03-fluss-berge.webp', caption: 'River with mountains' },
+					{ url: '/images/alpencross/04-tag2-view.webp', caption: 'Day 2 view' },
+					{ url: '/images/alpencross/05-schlafsaal.webp', caption: 'Dorm room' },
+					{ url: '/images/alpencross/06-sunset.webp', caption: 'Sunset in the mountains' },
+					{ url: '/images/alpencross/07-geroelle-wanderweg.webp', caption: 'Scree and difficult trails' },
+					{ url: '/images/alpencross/08-tag3-view.webp', caption: 'Day 3 view' },
+					{ url: '/images/alpencross/09-mini-bruecke.webp', caption: 'Mini bridge' },
+					{ url: '/images/alpencross/10-pause.webp', caption: 'Break' },
+					{ url: '/images/alpencross/11-taxi-regen.webp', caption: 'Taxi ride after heavy rain' },
+					{ url: '/images/alpencross/12-warten-krankenhaus.webp', caption: 'Waiting for the hospital guys on day 4' },
+					{ url: '/images/alpencross/13-huette-tag5.webp', caption: 'Hut on day 5' },
+					{ url: '/images/alpencross/14-natur-verbunden.webp', caption: 'Connected to nature' },
+					{ url: '/images/alpencross/15-schlechtes-wetter.webp', caption: 'Last day surprised with bad weather' },
+					{ url: '/images/alpencross/16-mehr-schlechtes-wetter.webp', caption: 'Even more bad weather' },
+					{ url: '/images/alpencross/17-oetzi-logbuch.webp', caption: 'Ötzi logbook' },
+					{ url: '/images/alpencross/18-vier-oetziwanderer.webp', caption: 'The four Ötzi hikers' },
+					{ url: '/images/alpencross/19-beendet.webp', caption: 'Finished – Reached Meran' }
+				]
+			}
+		],
+		planned: [
+			'Bike Tour through Germany',
 			'North Cape by Bike'
 		]
 	}
