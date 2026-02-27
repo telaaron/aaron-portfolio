@@ -320,10 +320,12 @@ export const bewegungContent = {
 				icon: '💪',
 				description: 'Main Sport nach Ian Baseagle Plan',
 				details: [
-					'Muscle-Up ✓',
-					'Weighted Pull-Ups',
-					'Weighted Dips',
-					'Weighted Push-Ups',
+					'Ian Baseagle 2-Satz-Methode',
+					'Push/Pull/Legs/Skill Split',
+					'Skills: Handstand, Planche, Front Lever',
+					'Muscle-Up ✓ + Weighted Exercises',
+					'Bouldern 1x/Woche (Grip & Problem Solving)',
+					'Supplements: Kreatin, Magnesium, Vitamin D',
 					'Progressive Overload Focus'
 				],
 				frequency: '4x/Woche',
@@ -367,10 +369,12 @@ export const bewegungContent = {
 				icon: '💪',
 				description: 'Main Sport following Ian Baseagle Plan',
 				details: [
-					'Muscle-Up ✓',
-					'Weighted Pull-Ups',
-					'Weighted Dips',
-					'Weighted Push-Ups',
+					'Ian Baseagle 2-Set Method',
+					'Push/Pull/Legs/Skill Split',
+					'Skills: Handstand, Planche, Front Lever',
+					'Muscle-Up ✓ + Weighted Exercises',
+					'Bouldering 1x/week (Grip & Problem Solving)',
+					'Supplements: Creatine, Magnesium, Vitamin D',
 					'Progressive Overload Focus'
 				],
 				frequency: '4x/week',

@@ -234,7 +234,7 @@ Tech and music are two expressions of the same creativity for me – both help m
 			</div>
 			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
 				<p bind:this={stat3Ref} class="text-3xl md:text-4xl font-bold text-orange-400">0</p>
-				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'AI-Projekte' : 'AI Projects'}</p>
+				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Projekte' : 'Projects'}</p>
 			</div>
 			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
 				<p bind:this={stat4Ref} class="text-3xl md:text-4xl font-bold text-amber-400">0</p>
