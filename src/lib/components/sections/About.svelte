@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { language } from '$lib/stores/language';
-	import { 
-		sectionTitleReveal, 
-		perspectiveEntrance, 
+	import {
+		sectionTitleReveal,
+		perspectiveEntrance,
 		springCounter,
 		imageZoomClipReveal,
 		blurFadeSection,
 		ensureGSAP,
-		cleanupScrollTriggers 
+		cleanupScrollTriggers
 	} from '$lib/utils/animations';
 	import { onMount } from 'svelte';
 
@@ -19,7 +19,7 @@
 	let portraitRef = $state<HTMLElement | null>(null);
 	let cardsRef = $state<HTMLElement | null>(null);
 	let statsRef = $state<HTMLElement | null>(null);
-	
+
 	// Stats refs for counter animation
 	let stat1Ref = $state<HTMLElement | null>(null);
 	let stat2Ref = $state<HTMLElement | null>(null);
@@ -31,12 +31,13 @@
 		setTimeout(async () => {
 			const { gsap, ScrollTrigger } = await ensureGSAP();
 			if (!gsap) return;
-			
+
 			// Section label
 			if (headerRef) {
 				const label = headerRef.querySelector('.section-label');
 				if (label) {
-					gsap.fromTo(label,
+					gsap.fromTo(
+						label,
 						{ opacity: 0, y: 20 },
 						{
 							opacity: 1,
@@ -52,17 +53,18 @@
 					);
 				}
 			}
-			
+
 			// Title with blur reveal
 			if (titleRef) await sectionTitleReveal(titleRef);
-			
+
 			// Verse with blur-fade section transition
 			if (verseRef) await blurFadeSection(verseRef);
-			
+
 			// Story paragraphs with rotation stagger - EARLIER
 			if (storyRef) {
 				const paragraphs = storyRef.querySelectorAll('p');
-				gsap.fromTo(paragraphs,
+				gsap.fromTo(
+					paragraphs,
 					{ opacity: 0, y: 40, rotation: 1.5 },
 					{
 						opacity: 1,
@@ -79,10 +81,10 @@
 					}
 				);
 			}
-			
+
 			// Portrait with zoom + clip-path combined
 			if (portraitRef) await imageZoomClipReveal(portraitRef);
-			
+
 			// Cards with 3D perspective entrance
 			if (cardsRef) {
 				const cards = cardsRef.querySelectorAll('.card-item');
@@ -90,11 +92,11 @@
 					perspectiveEntrance(card as HTMLElement);
 				});
 			}
-			
+
 			// Spring counter animations
 			if (stat1Ref) await springCounter(stat1Ref, 14, '+');
 			if (stat2Ref) await springCounter(stat2Ref, 3, '');
-			if (stat3Ref) await springCounter(stat3Ref, 3, '');
+			if (stat3Ref) await springCounter(stat3Ref, 4, '');
 			if (stat4Ref) await springCounter(stat4Ref, 4, '');
 		}, 100);
 
@@ -149,96 +151,162 @@ Tech and music are two expressions of the same creativity for me – both help m
 	let currentContent = $derived(content[$language]);
 </script>
 
-<section id="about" bind:this={sectionRef} class="py-24 px-4 md:px-8 bg-deep-black relative overflow-hidden">
+<section
+	id="about"
+	bind:this={sectionRef}
+	class="relative overflow-hidden bg-deep-black px-4 py-24 md:px-8"
+>
 	<!-- Background decoration -->
-	<div class="absolute top-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-	<div class="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+	<div
+		class="absolute top-0 left-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/5 blur-3xl"
+	></div>
+	<div
+		class="absolute right-0 bottom-0 h-96 w-96 translate-x-1/2 translate-y-1/2 rounded-full bg-amber-500/5 blur-3xl"
+	></div>
 
-	<div class="container max-w-4xl mx-auto relative z-10">
+	<div class="relative z-10 container mx-auto max-w-4xl">
 		<!-- Section header -->
-		<div bind:this={headerRef} class="text-center mb-16">
-			<p class="section-label opacity-0 text-orange-400 font-mono text-sm tracking-widest uppercase mb-2">{currentContent.sectionLabel}</p>
-			<h2 bind:this={titleRef} class="text-4xl md:text-5xl font-bold text-white mb-6">{currentContent.tagline}</h2>
-			
+		<div bind:this={headerRef} class="mb-16 text-center">
+			<p
+				class="section-label mb-2 font-mono text-sm tracking-widest text-orange-400 uppercase opacity-0"
+			>
+				{currentContent.sectionLabel}
+			</p>
+			<h2 bind:this={titleRef} class="mb-6 text-4xl font-bold text-white md:text-5xl">
+				{currentContent.tagline}
+			</h2>
+
 			<!-- Featured verse with mask reveal -->
-			<blockquote bind:this={verseRef} class="text-xl md:text-2xl text-gray-300 font-light italic max-w-2xl mx-auto">
+			<blockquote
+				bind:this={verseRef}
+				class="mx-auto max-w-2xl text-xl font-light text-gray-300 italic md:text-2xl"
+			>
 				{currentContent.verse}
-				<footer class="text-orange-400/60 text-base mt-2 not-italic">{currentContent.verseRef}</footer>
+				<footer class="mt-2 text-base text-orange-400/60 not-italic">
+					{currentContent.verseRef}
+				</footer>
 			</blockquote>
 		</div>
 
 		<!-- Story with Portrait -->
-		<div bind:this={storyRef} class="mb-16 grid md:grid-cols-3 gap-8 items-start">
+		<div bind:this={storyRef} class="mb-16 grid items-start gap-8 md:grid-cols-3">
 			<!-- Story text -->
-			<div class="md:col-span-2 prose prose-lg prose-invert max-w-none">
+			<div class="prose prose-lg max-w-none prose-invert md:col-span-2">
 				{#each currentContent.story.split('\n\n') as paragraph}
-					<p class="text-gray-300 leading-relaxed mb-6 opacity-0">{paragraph}</p>
+					<p class="mb-6 leading-relaxed text-gray-300 opacity-0">{paragraph}</p>
 				{/each}
 			</div>
-			
+
 			<!-- Portrait with scale reveal -->
 			<div class="md:col-span-1">
-				<div bind:this={portraitRef} class="relative rounded-2xl overflow-hidden border border-gray-800 hover:border-orange-500/50 transition-colors duration-300">
-					<img 
-						src="/images/aaron-portrait.jpg" 
+				<div
+					bind:this={portraitRef}
+					class="relative overflow-hidden rounded-2xl border border-gray-800 transition-colors duration-300 hover:border-orange-500/50"
+				>
+					<img
+						src="/images/aaron-portrait.jpg"
 						alt="Aaron - Builder, Musician, Creator"
-						class="w-full h-auto object-cover aspect-3/4"
+						class="aspect-3/4 h-auto w-full object-cover"
 					/>
-					<div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-deep-black/40 pointer-events-none"></div>
+					<div
+						class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-deep-black/40"
+					></div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Two columns: Faith & Mission -->
-		<div bind:this={cardsRef} class="grid md:grid-cols-2 gap-8">
+		<div bind:this={cardsRef} class="grid gap-8 md:grid-cols-2">
 			<!-- Faith -->
-			<div class="card-item bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-orange-500/30 transition-colors">
-				<div class="flex items-center gap-3 mb-6">
-					<div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-orange-400"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+			<div
+				class="card-item rounded-2xl border border-gray-800 bg-gray-900/50 p-8 transition-colors hover:border-orange-500/30"
+			>
+				<div class="mb-6 flex items-center gap-3">
+					<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/20">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="h-6 w-6 text-orange-400"
+							><path
+								d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+							/></svg
+						>
 					</div>
 					<h3 class="text-xl font-bold text-white">{currentContent.faithTitle}</h3>
 				</div>
 				<div class="space-y-4">
 					{#each currentContent.faith.split('\n\n') as paragraph}
-						<p class="text-gray-400 text-sm leading-relaxed">{paragraph}</p>
+						<p class="text-sm leading-relaxed text-gray-400">{paragraph}</p>
 					{/each}
 				</div>
 			</div>
 
 			<!-- Mission -->
-			<div class="card-item bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-amber-500/30 transition-colors">
-				<div class="flex items-center gap-3 mb-6">
-					<div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-amber-400"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="9"/></svg>
+			<div
+				class="card-item rounded-2xl border border-gray-800 bg-gray-900/50 p-8 transition-colors hover:border-amber-500/30"
+			>
+				<div class="mb-6 flex items-center gap-3">
+					<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/20">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="h-6 w-6 text-amber-400"
+							><circle cx="12" cy="12" r="1" /><circle cx="12" cy="12" r="5" /><circle
+								cx="12"
+								cy="12"
+								r="9"
+							/></svg
+						>
 					</div>
 					<h3 class="text-xl font-bold text-white">{currentContent.missionTitle}</h3>
 				</div>
 				<div class="space-y-4">
 					{#each currentContent.mission.split('\n\n') as paragraph}
-						<p class="text-gray-400 text-sm leading-relaxed">{paragraph}</p>
+						<p class="text-sm leading-relaxed text-gray-400">{paragraph}</p>
 					{/each}
 				</div>
 			</div>
 		</div>
 
 		<!-- Stats with counter animation -->
-		<div bind:this={statsRef} class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
-				<p bind:this={stat1Ref} class="text-3xl md:text-4xl font-bold text-orange-400">0</p>
-				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Jahre Musik' : 'Years of Music'}</p>
+		<div bind:this={statsRef} class="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
+			<div class="stat-item group text-center transition-transform duration-300 hover:scale-105">
+				<p bind:this={stat1Ref} class="text-3xl font-bold text-orange-400 md:text-4xl">0</p>
+				<p class="mt-1 text-sm text-gray-500 transition-colors group-hover:text-gray-400">
+					{$language === 'de' ? 'Jahre Musik' : 'Years of Music'}
+				</p>
 			</div>
-			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
-				<p bind:this={stat2Ref} class="text-3xl md:text-4xl font-bold text-amber-400">0</p>
-				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Klavierschüler' : 'Piano Students'}</p>
+			<div class="stat-item group text-center transition-transform duration-300 hover:scale-105">
+				<p bind:this={stat2Ref} class="text-3xl font-bold text-amber-400 md:text-4xl">0</p>
+				<p class="mt-1 text-sm text-gray-500 transition-colors group-hover:text-gray-400">
+					{$language === 'de' ? 'Klavierschüler' : 'Piano Students'}
+				</p>
 			</div>
-			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
-				<p bind:this={stat3Ref} class="text-3xl md:text-4xl font-bold text-orange-400">0</p>
-				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Projekte' : 'Projects'}</p>
+			<div class="stat-item group text-center transition-transform duration-300 hover:scale-105">
+				<p bind:this={stat3Ref} class="text-3xl font-bold text-orange-400 md:text-4xl">0</p>
+				<p class="mt-1 text-sm text-gray-500 transition-colors group-hover:text-gray-400">
+					{$language === 'de' ? 'Projekte' : 'Projects'}
+				</p>
 			</div>
-			<div class="stat-item text-center group hover:scale-105 transition-transform duration-300">
-				<p bind:this={stat4Ref} class="text-3xl md:text-4xl font-bold text-amber-400">0</p>
-				<p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors">{$language === 'de' ? 'Ensembles' : 'Ensembles'}</p>
+			<div class="stat-item group text-center transition-transform duration-300 hover:scale-105">
+				<p bind:this={stat4Ref} class="text-3xl font-bold text-amber-400 md:text-4xl">0</p>
+				<p class="mt-1 text-sm text-gray-500 transition-colors group-hover:text-gray-400">
+					{$language === 'de' ? 'Ensembles' : 'Ensembles'}
+				</p>
 			</div>
 		</div>
 	</div>

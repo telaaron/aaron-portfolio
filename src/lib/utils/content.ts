@@ -21,6 +21,28 @@ export const manifestorMethodContent = {
 		tools: ['Claude', 'VS Code', 'SvelteKit', 'Supabase', 'Vercel'],
 		projects: [
 			{
+				id: 'mindlenses',
+				name: 'MindLenses',
+				status: 'Neu',
+				statusColor: 'blue',
+				description:
+					'MindLenses ist eine Thinking-App, die komplexe Themen aus mehreren Perspektiven strukturiert zugänglich macht.',
+				longDescription:
+					'MindLenses hilft dabei, bei komplexen Fragen nicht in Schwarz-Weiß zu denken: Themen werden in klaren Blickwinkeln aufbereitet, damit man schneller Zusammenhänge erkennt und fundiertere Entscheidungen treffen kann.',
+				features: [
+					'Perspektiven-basierte Aufbereitung komplexer Themen',
+					'Schneller Überblick statt Informations-Overload',
+					'Fokus auf klare Struktur und Verständlichkeit',
+					'Live-App + öffentliches Repository'
+				],
+				tech: ['SvelteKit', 'TypeScript', 'Vite'],
+				link: 'https://github.com/telaaron/MindLenses',
+				image: '/images/mindlenses-hero.png',
+				logo: '/images/mindlenses-logo.png',
+				liveLink: 'https://mindlenses.app',
+				liveLinkText: 'Zur App'
+			},
+			{
 				id: 'chord-trainer',
 				name: 'Chord Trainer',
 				status: 'Live v0.6.x',
@@ -102,6 +124,28 @@ export const manifestorMethodContent = {
 	en: {
 		tools: ['Claude', 'VS Code', 'SvelteKit', 'Supabase', 'Vercel'],
 		projects: [
+			{
+				id: 'mindlenses',
+				name: 'MindLenses',
+				status: 'New',
+				statusColor: 'blue',
+				description:
+					'MindLenses is a thinking app that makes complex topics easier to understand through structured perspectives.',
+				longDescription:
+					'MindLenses helps users avoid black-and-white thinking on complex questions by organizing topics into clear lenses, making it easier to see connections and decide with more clarity.',
+				features: [
+					'Perspective-based framing for complex topics',
+					'Fast orientation instead of information overload',
+					'Strong focus on clarity and structure',
+					'Live app + public repository'
+				],
+				tech: ['SvelteKit', 'TypeScript', 'Vite'],
+				link: 'https://github.com/telaaron/MindLenses',
+				image: '/images/mindlenses-hero.png',
+				logo: '/images/mindlenses-logo.png',
+				liveLink: 'https://mindlenses.app',
+				liveLinkText: 'Live App'
+			},
 			{
 				id: 'chord-trainer',
 				name: 'Chord Trainer',
@@ -588,31 +632,49 @@ Wir waren sehr froh es geschafft zu haben.`,
 				tags: ['Trekking', 'Alpen', 'Durchhalten', 'Chaos'],
 				gallery: [
 					{ url: '/images/alpencross/01-start-oberstdorf.webp', caption: 'Start in Oberstdorf' },
-					{ url: '/images/alpencross/02-tag1-eigenes-tempo.webp', caption: 'Jeder läuft sein Tempo – Tag 1' },
+					{
+						url: '/images/alpencross/02-tag1-eigenes-tempo.webp',
+						caption: 'Jeder läuft sein Tempo – Tag 1'
+					},
 					{ url: '/images/alpencross/03-fluss-berge.webp', caption: 'Fluss mit Bergen' },
 					{ url: '/images/alpencross/04-tag2-view.webp', caption: 'Tag 2 View' },
 					{ url: '/images/alpencross/05-schlafsaal.webp', caption: 'Schlafsaal' },
 					{ url: '/images/alpencross/06-sunset.webp', caption: 'Sunset in den Bergen' },
-					{ url: '/images/alpencross/07-geroelle-wanderweg.webp', caption: 'Gerölle und schwere Wanderwege' },
+					{
+						url: '/images/alpencross/07-geroelle-wanderweg.webp',
+						caption: 'Gerölle und schwere Wanderwege'
+					},
 					{ url: '/images/alpencross/08-tag3-view.webp', caption: 'View Tag 3' },
 					{ url: '/images/alpencross/09-mini-bruecke.webp', caption: 'Mini Brücke' },
 					{ url: '/images/alpencross/10-pause.webp', caption: 'Pause' },
-					{ url: '/images/alpencross/11-taxi-regen.webp', caption: 'Taxi-Fahrt nach heftigem Regen' },
-					{ url: '/images/alpencross/12-warten-krankenhaus.webp', caption: 'Warten auf die Krankenhaus-Jungs an Tag 4' },
+					{
+						url: '/images/alpencross/11-taxi-regen.webp',
+						caption: 'Taxi-Fahrt nach heftigem Regen'
+					},
+					{
+						url: '/images/alpencross/12-warten-krankenhaus.webp',
+						caption: 'Warten auf die Krankenhaus-Jungs an Tag 4'
+					},
 					{ url: '/images/alpencross/13-huette-tag5.webp', caption: 'Hütte an Tag 5' },
 					{ url: '/images/alpencross/14-natur-verbunden.webp', caption: 'Der Natur verbunden' },
-					{ url: '/images/alpencross/15-schlechtes-wetter.webp', caption: 'Letzter Tag überrascht mit schlechtem Wetter' },
-					{ url: '/images/alpencross/16-mehr-schlechtes-wetter.webp', caption: 'Noch mehr schlechtes Wetter' },
+					{
+						url: '/images/alpencross/15-schlechtes-wetter.webp',
+						caption: 'Letzter Tag überrascht mit schlechtem Wetter'
+					},
+					{
+						url: '/images/alpencross/16-mehr-schlechtes-wetter.webp',
+						caption: 'Noch mehr schlechtes Wetter'
+					},
 					{ url: '/images/alpencross/17-oetzi-logbuch.webp', caption: 'Ötzi Logbuch' },
-					{ url: '/images/alpencross/18-vier-oetziwanderer.webp', caption: 'Die vier Ötzi-Wanderer' },
+					{
+						url: '/images/alpencross/18-vier-oetziwanderer.webp',
+						caption: 'Die vier Ötzi-Wanderer'
+					},
 					{ url: '/images/alpencross/19-beendet.webp', caption: 'Beendet – Meran erreicht' }
 				]
 			}
 		],
-		planned: [
-			'Radtour durch Deutschland',
-			'Nordkap mit dem Rad'
-		]
+		planned: ['Radtour durch Deutschland', 'Nordkap mit dem Rad']
 	},
 	en: {
 		trips: [
@@ -782,30 +844,41 @@ We were very happy to have made it.`,
 				tags: ['Trekking', 'Alps', 'Perseverance', 'Chaos'],
 				gallery: [
 					{ url: '/images/alpencross/01-start-oberstdorf.webp', caption: 'Start in Oberstdorf' },
-					{ url: '/images/alpencross/02-tag1-eigenes-tempo.webp', caption: 'Everyone at their own pace – Day 1' },
+					{
+						url: '/images/alpencross/02-tag1-eigenes-tempo.webp',
+						caption: 'Everyone at their own pace – Day 1'
+					},
 					{ url: '/images/alpencross/03-fluss-berge.webp', caption: 'River with mountains' },
 					{ url: '/images/alpencross/04-tag2-view.webp', caption: 'Day 2 view' },
 					{ url: '/images/alpencross/05-schlafsaal.webp', caption: 'Dorm room' },
 					{ url: '/images/alpencross/06-sunset.webp', caption: 'Sunset in the mountains' },
-					{ url: '/images/alpencross/07-geroelle-wanderweg.webp', caption: 'Scree and difficult trails' },
+					{
+						url: '/images/alpencross/07-geroelle-wanderweg.webp',
+						caption: 'Scree and difficult trails'
+					},
 					{ url: '/images/alpencross/08-tag3-view.webp', caption: 'Day 3 view' },
 					{ url: '/images/alpencross/09-mini-bruecke.webp', caption: 'Mini bridge' },
 					{ url: '/images/alpencross/10-pause.webp', caption: 'Break' },
 					{ url: '/images/alpencross/11-taxi-regen.webp', caption: 'Taxi ride after heavy rain' },
-					{ url: '/images/alpencross/12-warten-krankenhaus.webp', caption: 'Waiting for the hospital guys on day 4' },
+					{
+						url: '/images/alpencross/12-warten-krankenhaus.webp',
+						caption: 'Waiting for the hospital guys on day 4'
+					},
 					{ url: '/images/alpencross/13-huette-tag5.webp', caption: 'Hut on day 5' },
 					{ url: '/images/alpencross/14-natur-verbunden.webp', caption: 'Connected to nature' },
-					{ url: '/images/alpencross/15-schlechtes-wetter.webp', caption: 'Last day surprised with bad weather' },
-					{ url: '/images/alpencross/16-mehr-schlechtes-wetter.webp', caption: 'Even more bad weather' },
+					{
+						url: '/images/alpencross/15-schlechtes-wetter.webp',
+						caption: 'Last day surprised with bad weather'
+					},
+					{
+						url: '/images/alpencross/16-mehr-schlechtes-wetter.webp',
+						caption: 'Even more bad weather'
+					},
 					{ url: '/images/alpencross/17-oetzi-logbuch.webp', caption: 'Ötzi logbook' },
 					{ url: '/images/alpencross/18-vier-oetziwanderer.webp', caption: 'The four Ötzi hikers' },
 					{ url: '/images/alpencross/19-beendet.webp', caption: 'Finished – Reached Meran' }
 				]
 			}
-		],
-		planned: [
-			'Bike Tour through Germany',
-			'North Cape by Bike'
 		]
 	}
 };
